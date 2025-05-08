@@ -1,0 +1,31 @@
+// Colors
+$bg-color: #342F33;
+$green-color: #47E18D;
+$orange-color: #E39B6B;
+$red-color: #FF3860;
+$secondary-color: rgba(71, 225, 141, .1);
+$font-color: #FFEEE2;
+// $gradient-line-one: linear-gradient(
+//     to right,
+//     rgba($accent-color, 0) 0%,
+//     rgba($accent-color, 1) 50%,
+//     rgba($accent-color, 0) 100%
+// );
+// $gradient-line-two: linear-gradient(
+//     to right,
+//     rgba($accent-color, 1) 0%,
+//     rgba($accent-color, 0) 40%,
+//     rgba($accent-color, 0) 60%,
+//     rgba($accent-color, 1) 100%
+// );
+
+// Spacing
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 32px;
+
+// Font Size
+$main-size: clamp(1rem, 1.5vw, 1.05rem);
+$subheading-size: clamp(1.5rem, 2vw, 2rem);
+$heading-size: clamp(2rem, 3vw, 2.5rem);
+$caption-size: clamp(.7rem, 1vw, .9rem);
