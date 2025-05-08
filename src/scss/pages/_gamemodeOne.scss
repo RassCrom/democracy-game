@@ -1,8 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 60px 40px 40px;
+    padding: 40px 40px 20px 40px;
     position: relative;
     width: 100%;
     max-width: 1500px;
@@ -22,6 +29,7 @@
 }
 
 .main-content {
+    flex: 1; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +40,7 @@
 
 .top-info-bar {
     width: 90%;
-    max-width: 1350px;
+    max-width: 1400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,4 +71,13 @@
     font-family: "Graduate", serif;
     max-width: 400px;
     white-space: nowrap;
+}
+
+#map {
+    width: 85%;
+    height: 85%;
+    background-color: $bg-color;
+    border: 1px solid #555;
+    margin-top: 50px;
+    max-width: 1400px;
 }
