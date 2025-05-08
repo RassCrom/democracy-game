@@ -1,90 +1,66 @@
-body {
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 40px 40px;
     position: relative;
     width: 100%;
-    height: 100vh;
-    margin: 0;
-    background: #342F33;
-    color: #FFEEE2;
-
-
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
-.header {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;;
+.nav-left, .nav-right {
     display: flex;
-    gap: 2rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.main-title {
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 60px 0 0;
-
+    padding: 20px;
+    box-sizing: border-box;
 }
-
-// .nav-left {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     align-items: center;
-
-//     position: absolute;
-//     width: 16.09vw;
-//     height: 4.17vh;
-//     left: 13.54vw;
-//     top: 6.85vh;
-
-//     padding: 0.93vh 0.83vw;
-//     gap: 1.67vw;
-// }
-
-// .nav-right {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 0.93vh 0.83vw;
-
-//     gap: 1.67vw;
-
-//     position: absolute;
-//     width: 16.88vw;
-//     height: 4.17vh;
-//     left: 69.58vw;
-//     top: 6.85vh;
-// }
-
-
-
-// .main-title {
-//     position: absolute;
-//     width: 24.27vw;
-//     height: 6.67vh;
-//     top: 5.56vh;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     white-space: nowrap;
-
-//     font-family: 'Graduate', sans-serif;
-//     font-style: normal;
-//     font-weight: 400;
-
-//     font-size: 3.13vw;
-//     line-height: 1.2;
-
-//     color: #E39B6B;
-// }
-
 
 .top-info-bar {
-    position: absolute;
-    width: 70.52vw;
-    height: 5.65vh;
-    left: 14.74vw;
-    top: 17.78vh;
+    width: 90%;
+    max-width: 1350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin: 30px auto 0;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+
+.info-box {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    border: 2px solid $green-color;
+    font-family: "Graduate", serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.system-name {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 60px;
+    border: 2px solid $green-color;
+    font-family: "Graduate", serif;
+    max-width: 400px;
+    white-space: nowrap;
 }
