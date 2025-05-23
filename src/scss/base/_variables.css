@@ -1,0 +1,20 @@
+:root {
+  /* 🎨 Colors */
+  --bg-color: #342F33;
+  --green-color: #47E18D;
+  --orange-color: #E39B6B;
+  --red-color: #FF3860;
+  --secondary-color: rgba(71, 225, 141, 0.1);
+  --font-color: #FFEADB;
+
+  /* 🧍 Font Sizes */
+  --main-size: clamp(1rem, 1.5vw, 1.05rem);
+  --subheading-size: clamp(1.5rem, 2vw, 2rem);
+  --heading-size: clamp(2rem, 3vw, 2.5rem);
+  --caption-size: clamp(0.7rem, 1vw, 0.9rem);
+
+  /* 📏 Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
+}
