@@ -1,4 +1,4 @@
-// BASE
+/* BASE */
 @import './base/variables';
 @import './base/mixins';
 @import './base/globals';
@@ -6,7 +6,7 @@
 @import './base/layout';
 
 
-// PAGES
+/* PAGES */
 @import './pages/home';
 @import './pages/countrybase';
 @import './pages/about';
