@@ -31,7 +31,7 @@ class Header {
         LEFT_LINKS.forEach(linkText => {
             navLeft.appendChild(uListLeft);
             const a = document.createElement('a');
-            a.href = `./${linkText}`;
+            a.href = `./src/pages/${linkText}`;
             a.textContent = linkText;
             uListLeft.appendChild(a);
         });
@@ -39,7 +39,7 @@ class Header {
         RIGHT_LINKS.forEach(linkText => {
             navRight.appendChild(uListRight);
             const a = document.createElement('a');
-            a.href = `./${linkText}`;
+            a.href = `./src/pages/${linkText}`;
             a.textContent = linkText;
             uListRight.appendChild(a);
         });
