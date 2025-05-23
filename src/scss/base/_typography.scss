@@ -20,8 +20,9 @@ a {
     position: relative;
 
     font-size: $main-size;
-    color: $orange-color;
-    text-transform: uppercase;
+    font-weight: 400    ;
+    color: $font-color;
+    text-transform: lowercase;
     text-decoration: none;
 
     cursor: pointer;
@@ -41,7 +42,7 @@ a {
     }
 
     &:hover {
-        color: darken($orange-color, 15%);
+        color: darken($orange-color, 5%);
         
         &::after {
             transform: scaleX(1);
