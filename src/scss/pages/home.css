@@ -35,6 +35,23 @@
     0 0 20px rgba(255, 170, 0, 0.4);
 }
 
+.title-text a {
+    font-family: "Graduate", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--heading-size);
+    color: var(--orange-color);
+    line-height: 1.2;
+}
+
+.title-text a:hover {
+    color: var(--orange-color);
+}
+
+.title-text a:hover::after {
+    transform: scale(0);
+}
+
 .start-game {
   position: absolute;
   top: 50%;

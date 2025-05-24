@@ -1,5 +1,5 @@
 // // HEADER usable component for all pages
-const LEFT_LINKS = ['countrybase', 'stats', 'about'];
+const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
 const RIGHT_LINKS = ['setting', 'educational', 'tutorial'];
 const HEADER_TITLE = 'State of Mind';
 
@@ -26,14 +26,14 @@ class Header {
 
         textTitle.appendChild(headerLink);
         headerLink.textContent = HEADER_TITLE;
-        headerLink.href = 'http://localhost:5173/';
+        headerLink.href = '/index.html';
 
         headerTitle.appendChild(textTitle);
 
         LEFT_LINKS.forEach(linkText => {
             navLeft.appendChild(uListLeft);
             const a = document.createElement('a');
-            a.href = `./src/pages/${linkText}`;
+            a.href = `/src/pages/${linkText}.html`;
             a.textContent = linkText;
             uListLeft.appendChild(a);
         });
@@ -41,7 +41,7 @@ class Header {
         RIGHT_LINKS.forEach(linkText => {
             navRight.appendChild(uListRight);
             const a = document.createElement('a');
-            a.href = `./src/pages/${linkText}`;
+            a.href = `/src/pages/${linkText}.html`;
             a.textContent = linkText;
             uListRight.appendChild(a);
         });
