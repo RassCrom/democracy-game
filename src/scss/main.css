@@ -7,3 +7,6 @@
 /* PAGES */
 @import url('./pages/home.css');
 @import url('./pages/gamemodeOne.css');
+
+/* COMPONENTS */
+@import url('./components/header.css');
