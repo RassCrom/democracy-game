@@ -130,7 +130,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid transparent;
+  /* border: 2px solid transparent; */
   border-radius: 8px;
   background: linear-gradient(45deg, var(--green-color), #6effab) border-box;
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);

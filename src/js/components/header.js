@@ -14,6 +14,7 @@ class Header {
         const textTitle = document.createElement('h1');
         const uListLeft = document.createElement('ul');
         const uListRight = document.createElement('ul');
+        const headerLink = document.createElement('a');
 
         container.classList.add('container');
         navLeft.classList.add('nav-left');
@@ -23,8 +24,9 @@ class Header {
         uListLeft.classList.add('nav-list');
         uListRight.classList.add('nav-list');
 
-        textTitle.textContent = HEADER_TITLE;
-        // textTitle.href = './home';
+        textTitle.appendChild(headerLink);
+        headerLink.textContent = HEADER_TITLE;
+        headerLink.href = 'http://localhost:5173/';
 
         headerTitle.appendChild(textTitle);
 
