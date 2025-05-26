@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State of Mind - Game Mode One</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link href='https://unpkg.com/maplibre-gl@^4.0/dist/maplibre-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -28,15 +28,19 @@
             <div class="info-box counter">
                 00/00
             </div>
-            <div class="system-name">MONARCHY REGIME</div>
+            <div class="system-name">SYSTEM TYPE</div>
             <div class="info-box timer">
                 00:00
             </div>
         </div>
         <div id="map"></div>
+        <div class="controls">
+            <button id="startButton" class="btn">Start Game</button>
+            <button id="endButton" class="btn">End Game</button>
+        </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src='https://unpkg.com/maplibre-gl@^4.0/dist/maplibre-gl.js'></script>
     <script src="../js/gamemodeOne.js"></script>
     <script type="module" src="../js/main.js"></script>
 

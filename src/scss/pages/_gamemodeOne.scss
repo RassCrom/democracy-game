@@ -16,7 +16,8 @@ body {
     margin: 0 auto;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -30,14 +31,15 @@ body {
 
 .main-content {
     flex: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     padding: 20px;
-    margin-bottom: 50px;
-  }
+    margin-bottom: 20px;
+}
 
 .top-info-bar {
     width: 90%;
@@ -49,8 +51,8 @@ body {
     margin: 30px auto 0;
     box-sizing: border-box;
     position: relative;
-  }
-  
+}
+
 
 .info-box {
     box-sizing: border-box;
@@ -71,20 +73,87 @@ body {
     border: 2px solid $green-color;
     font-family: "Graduate", serif;
     max-width: 400px;
-    white-space: nowrap;
+    text-align: center;
 }
 
 #map {
     flex: 1;
     width: 85%;
     background-color: $bg-color;
-    border: 1px solid #555;
-    margin-top: 50px;
+    margin-top: 30px;
     max-width: 1400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    padding: 8px 12px;
 }
 
-#map path.leaflet-interactive:focus,
-#map path.leaflet-interactive:active {
-    outline: none !important;
-    //if this is not added, the rectangle will appear around the country when clicked
+.maplibregl-popup.custom-country-popup .maplibregl-popup-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: $bg-color;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    margin-top: 25px;
+    padding-bottom: 20px;
+
+    .btn {
+        background-color: transparent;
+        border: 2px solid $green-color;
+        color: $green-color;
+        padding: 12px 25px;
+        font-family: "Graduate", serif;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $green-color;
+            color: $font-color;
+        }
+
+        &:disabled {
+            border-color: #555;
+            color: #555;
+            cursor: not-allowed;
+            background-color: transparent;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 15px 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-left,
+    .nav-right {
+        gap: 15px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .info-box,
+    .system-name {
+        padding: 10px 20px;
+    }
+
 }
