@@ -3,8 +3,9 @@ var map = new maplibregl.Map({
     style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
     center: [80, 30],
     zoom: 1,
+    maxZoom: 5,
     attributionControl: false,
-    //renderWorldCopies: false
+    renderWorldCopies: false
 });
 
 
@@ -68,6 +69,17 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
         }
 
         map.on('load', () => {
+            // Remove all symbol layers (text, icons) from the base map for a cleaner look
+            const style = map.getStyle();
+            if (style && style.layers) {
+                const layersToRemove = style.layers.filter(layer => layer.type === 'symbol').map(layer => layer.id);
+                layersToRemove.forEach(id => {
+                    if (map.getLayer(id)) {
+                        map.removeLayer(id);
+                    }
+                });
+            }
+
             map.setPaintProperty('water', 'fill-color', '#342F33');
             map.addSource('countries', {
                 'type': 'geojson',
@@ -82,16 +94,15 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                 'paint': {
                     'fill-color': [
                         'case',
-                        ['boolean', ['feature-state', 'clicked'], false],
-                        '#47E18D',
+                        ['boolean', ['feature-state', 'incorrect_click'], false], '#FF3860',
+                        ['boolean', ['feature-state', 'clicked'], false], '#47E18D',
                         '#FFEEE2'
                     ],
                     'fill-opacity': [
                         'case',
-                        ['boolean', ['feature-state', 'clicked'], false],
-                        0.7,
-                        ['boolean', ['feature-state', 'hover'], false],
-                        1,
+                        ['boolean', ['feature-state', 'incorrect_click'], false], 0.9,
+                        ['boolean', ['feature-state', 'clicked'], false], 0.8,
+                        ['boolean', ['feature-state', 'hover'], false], 1,
                         0.9
                     ],
                     'fill-outline-color': '#342F33'
@@ -120,7 +131,7 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                 if (feature.properties && feature.properties.ADMIN) {
                     map.setFeatureState(
                         { source: 'countries', id: feature.properties.ADMIN },
-                        { hover: false, clicked: false }
+                        { hover: false, clicked: false, incorrect_click: false }
                     );
                 }
             });
@@ -201,6 +212,16 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                         if (correctClicks === currentGameChallenge.count) {
                             endGame(true);
                         }
+                    } else {
+                        const countryId = countryName;
+                        
+                        map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: true });
+
+                        setTimeout(() => {
+                            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
+                                map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
+                            }
+                        }, 300);
                     }
                 }
             });
@@ -231,14 +252,16 @@ function startGame() {
         clickedCountries.forEach(countryId => {
             map.setFeatureState(
                 { source: 'countries', id: countryId },
-                { clicked: false, hover: false }
+                { clicked: false, hover: false, incorrect_click: false }
             );
         });
         if (hoveredCountryId !== null) {
-            map.setFeatureState(
-                { source: 'countries', id: hoveredCountryId },
-                { hover: false }
-            );
+            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: hoveredCountryId })) {
+                map.setFeatureState(
+                    { source: 'countries', id: hoveredCountryId },
+                    { hover: false, clicked: false, incorrect_click: false }
+                );
+            }
             hoveredCountryId = null;
         }
     }
