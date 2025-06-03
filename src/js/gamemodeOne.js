@@ -217,11 +217,11 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                         
                         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: true });
 
-                        setTimeout(() => {
-                            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
-                                map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
-                            }
-                        }, 300);
+                        // setTimeout(() => {
+                        //     if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
+                        //         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
+                        //     }
+                        // }, 300);
                     }
                 }
             });
