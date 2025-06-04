@@ -33,13 +33,15 @@ html, body {
 }
 
 .container {
-  max-width: 1264px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    max-width: 1264px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* RESPONSIVE */

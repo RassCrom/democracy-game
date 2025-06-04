@@ -53,7 +53,7 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1001;
+    z-index: 1010;
     position: relative;
 }
 
@@ -147,6 +147,10 @@
 }
 
 @media screen and (max-width: 950px) {
+    .header {
+        z-index: 3;
+    }
+    
     .nav-left, .nav-right {
         display: none;
     }
@@ -201,10 +205,6 @@
 
 /* RESPONSIVE */
 @media screen and (max-width: 1100px) {
-    .header .container {
-
-    }
-
     nav {
         display: none;
         visibility: hidden;
