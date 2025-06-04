@@ -72,7 +72,7 @@ class Header {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.setAttribute('data-nav', linkText)
-            a.href = `/src/pages/${linkText}.html`;
+            a.href = `/democracy-game/src/pages/${linkText}.html`;
             a.textContent = linkText;
             li.appendChild(a);
             ul.appendChild(li);
