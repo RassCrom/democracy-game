@@ -1,0 +1,12 @@
+.stats .start-game {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    padding: 3rem 0;
+}
+
+.stats .container {
+    flex-direction: column;
+}

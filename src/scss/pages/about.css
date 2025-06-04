@@ -1,12 +1,4 @@
-.about {
-    margin-top: calc(64px + 4rem);
-    min-height: calc(100vh - 64px - 4rem);
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 10rem;
-}
+
 
 .about .container {
     flex-direction: column;
