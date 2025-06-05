@@ -19,10 +19,10 @@ activeNav = activeNav[0]
 const header = new Header();
 wrapper.append(header.render());
 
-wrapper.append(mains);
 
 const footer = new Footer();
 if (ALL_LINKS.includes(activeNav)) {
+    mains && wrapper.append(mains);
     wrapper.append(footer.render());
 }
 
