@@ -34,3 +34,9 @@ ALL_LINKS.forEach((link) => {
         activeLink.classList.remove('active-nav')
     }
 })
+
+const gameModeBtn = document.getElementById('game-mode');
+gameModeBtn.addEventListener('click', () => {
+    window.location.href = '/democracy-game/src/pages/settings';
+});
+gameModeBtn.setAttribute('role', 'link');
