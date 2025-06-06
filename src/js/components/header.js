@@ -98,7 +98,7 @@ class Header {
         titleText.classList.add('title-text');
 
         const titleLink = document.createElement('a');
-        titleLink.href = '/democracy-game/home.html';
+        titleLink.href = '/democracy-game/src/pages/home';
         titleLink.textContent = HEADER_TITLE;
 
         titleText.appendChild(titleLink);

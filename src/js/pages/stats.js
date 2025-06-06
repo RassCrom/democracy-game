@@ -2,9 +2,6 @@ import * as d3 from 'd3';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-const savedSettings = JSON.parse(localStorage.getItem('gameSettings'));
-console.log(savedSettings)
-
 const regimeData = [
     { regime: 'Democratic', count: 107, color: '#47E18D', percentage: 49.5 },
     { regime: 'Authoritarian', count: 43, color: '#FF3860', percentage: 19.9 },

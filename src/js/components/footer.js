@@ -1,7 +1,7 @@
 class Footer {
     constructor() {
         this.gameLinks = ['paly now', 'game modes', 'leaderboard', 'how to play'];
-        this.aboutLinks = ['our team', 'project info', 'TU Vienna', 'Contact']
+        this.aboutLinks = ['our team', 'project info', 'TU Vienna', 'Contact'];
     }
 
     render() {

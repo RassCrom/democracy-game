@@ -1,9 +1,12 @@
 import Header from './components/header.js';
 import Footer from './components/footer.js';
 
+import { createGameModeModal } from './utils/chooseGame.js';
+
 const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
 const RIGHT_LINKS = ['settings', 'educational', 'tutorial'];
 const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS];
+const GAMEMODES = ['gamemodeone']
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
@@ -23,7 +26,7 @@ const mainContent = document.querySelector('.main-content');
 if (activeNav === 'gamemodeone') wrapper.append(mainContent);
 
 const footer = new Footer();
-if (ALL_LINKS.includes(activeNav)) {
+if (ALL_LINKS.includes(activeNav) || activeNav.includes(GAMEMODES)) {
     mains && wrapper.append(mains);
     wrapper.append(footer.render());
 }
@@ -36,3 +39,11 @@ ALL_LINKS.forEach((link) => {
         activeLink.classList.remove('active-nav')
     }
 })
+
+const gamemode = document.getElementById('gamemode');
+gamemode?.addEventListener('click', () => {
+    window.location.href = '/democracy-game/src/pages/settings';
+})
+gamemode?.setAttribute('role', 'link')
+
+document.getElementById('gameChoose')?.addEventListener('click', createGameModeModal);
