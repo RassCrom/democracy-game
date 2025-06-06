@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Democracy game</title>
+    <link rel="stylesheet" href="../scss/main.css">
+  </head>
+  <body>
+    <main class="settings">
+      <div class="container">
+            <div class="settings-modal">                
+                <h2 class="settings-title">Game Mode</h2>
+                
+                <div class="setting-grid">
+                  <div class="setting-group">
+                    <label class="setting-label">Game Mode</label>
+                    <div class="setting-dropdown">
+                        <button class="dropdown-button">
+                          <span>Political System</span>
+                          <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-option">Political System</div>
+                          <div class="dropdown-option">Country by Political Person</div>
+                          <div class="dropdown-option">Drag n Drop Country</div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="setting-group">
+                    <label class="setting-label">Distance Unit</label>
+                    <div class="setting-dropdown">
+                        <button class="dropdown-button">
+                          <span>Kilometers</span>
+                          <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-option">Kilometers</div>
+                          <div class="dropdown-option">Miles</div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="setting-group">
+                    <label class="setting-label">Timer</label>
+                    <div class="setting-dropdown">
+                        <button class="dropdown-button">
+                          <span>2 minutes</span>
+                          <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-option">1 minute</div>
+                          <div class="dropdown-option">2 minutes</div>
+                          <div class="dropdown-option">3 minutes</div>
+                          <div class="dropdown-option">5 minutes</div>
+                          <div class="dropdown-option">No Limit</div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="setting-group">
+                    <label class="setting-label">Organizations</label>
+                    <div class="setting-dropdown">
+                        <button class="dropdown-button">
+                          <span>All</span>
+                          <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-option">All</div>
+                          <div class="dropdown-option">European Union</div>
+                          <div class="dropdown-option">NATO</div>
+                          <div class="dropdown-option">United Nations</div>
+                          <div class="dropdown-option">OSCE</div>
+                          <div class="dropdown-option">CIS</div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="setting-group">
+                    <label class="setting-label">Region</label>
+                    <div class="setting-dropdown">
+                        <button class="dropdown-button">
+                          <span>World Map</span>
+                          <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="dropdown-option">World Map</div>
+                          <div class="dropdown-option">Europe</div>
+                          <div class="dropdown-option">Asia</div>
+                          <div class="dropdown-option">Americas</div>
+                          <div class="dropdown-option">Africa</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                <button class="btn btn-primary">Save Settings</button>
+                <button class="btn btn-secondary">Reset</button>
+                </div>
+            </div>
+        <section class="start-game">
+          <button class="btn">start game</button>
+          <!-- <button class="btn">game mode</button> -->
+        </section>
+      </div>
+    </main>
+
+    <div class="portrait-container">
+      <img class="img-portraits" src="/assets/images/stalin.png" alt="Stalin">
+      <img class="img-portraits" src="/assets/images/churchil.png" alt="Churchill">
+      <img class="img-portraits" src="/assets/images/rome.png" alt="Rome">
+    </div>
+      
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/settings.js"></script>
+  </body>
+</html>
