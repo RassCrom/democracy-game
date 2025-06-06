@@ -6,6 +6,13 @@
   --red-color: #FF3860;
   --secondary-color: rgba(71, 225, 141, 0.1);
   --font-color: #FFEADB;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --blue-color: #4fc3f7;
+  --purple-color: #ba68c8;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.2);
 
   /* 🧍 Font Sizes */
   --main-size: clamp(1rem, 1.5vw, 1.05rem);

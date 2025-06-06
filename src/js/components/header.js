@@ -1,6 +1,6 @@
 // HEADER usable component for all pages
 const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
-const RIGHT_LINKS = ['setting', 'educational', 'tutorial'];
+const RIGHT_LINKS = ['settings', 'educational', 'tutorial'];
 const HEADER_TITLE = 'State of Mind';
 
 class Header {

@@ -2,7 +2,7 @@ import Header from './components/header.js';
 import Footer from './components/footer.js';
 
 const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
-const RIGHT_LINKS = ['setting', 'educational', 'tutorial'];
+const RIGHT_LINKS = ['settings', 'educational', 'tutorial'];
 const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS];
 
 const wrapper = document.createElement('div');

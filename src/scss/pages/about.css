@@ -26,7 +26,7 @@
     text-align: start;
 }
 
-.about .heading {
+.heading {
     font-size: var(--heading-size);
     font-weight: 700;
     margin-bottom: 3rem;
@@ -38,7 +38,15 @@
     text-align: center;
 }
 
-.about .heading::after {
+.heading span {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: inherit !important; /* fallback for non-WebKit browsers */
+}
+
+.heading::after {
     content: '';
     position: absolute;
     bottom: -10px;
