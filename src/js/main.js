@@ -15,10 +15,12 @@ const activeNavUrl = window.location.pathname;
 let activeNav = activeNavUrl.split('/').slice(-1)
 activeNav[0] = activeNav[0].replace(/\.html$/, '')
 activeNav = activeNav[0]
-
+console.log(activeNav)
 const header = new Header();
 wrapper.append(header.render());
 
+const mainContent = document.querySelector('.main-content');
+if (activeNav === 'gamemodeone') wrapper.append(mainContent);
 
 const footer = new Footer();
 if (ALL_LINKS.includes(activeNav)) {
