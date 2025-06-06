@@ -72,8 +72,16 @@ class Header {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.setAttribute('data-nav', linkText)
-            a.href = `/democracy-game/src/pages/${linkText}.html`;
+            a.href = `/democracy-game/src/pages/${linkText}`;
             a.textContent = linkText;
+            if (linkText === 'tutorial') {
+                a.addEventListener('click', function(event) {
+                    event.preventDefault();
+                });
+                // a.style.pointerEvents = 'none';
+                a.style.opacity = '0.5';
+                a.style.cursor = 'not-allowed';
+            }
             li.appendChild(a);
             ul.appendChild(li);
         });
@@ -90,7 +98,7 @@ class Header {
         titleText.classList.add('title-text');
 
         const titleLink = document.createElement('a');
-        titleLink.href = '/index.html';
+        titleLink.href = '/democracy-game/home.html';
         titleLink.textContent = HEADER_TITLE;
 
         titleText.appendChild(titleLink);
@@ -144,7 +152,7 @@ class Header {
         
         allLinks.forEach(linkText => {
             const a = document.createElement('a');
-            a.href = `/src/pages/${linkText}.html`;
+            a.href = `/democracy-game/src/pages/${linkText}.html`;
             a.textContent = linkText;
             mobileMenu.appendChild(a);
         });

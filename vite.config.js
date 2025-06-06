@@ -12,7 +12,7 @@ const input = htmlFiles.reduce((entries, file) => {
 }, {});
 
 export default defineConfig({
-  base: '/democracy-game/',
+  base: 'democracy-game/',
   build: {
     rollupOptions: {
       input,

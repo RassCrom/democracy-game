@@ -166,7 +166,6 @@ function createDonutChart() {
             hideTooltip();
         })
         .on('click', function(event, d) {
-            animateCard(this);
             filterByRegime(d.data.regime);
         });
 
@@ -464,7 +463,6 @@ function createCountryElement(country, index) {
     `;
     
     div.addEventListener('click', function() {
-        animateCard(this);
         showCountryDetails(country);
     });
     
@@ -523,14 +521,6 @@ function initializeMap() {
         .duration(1000)
         .delay((d, i) => i * 200)
         .attr('r', 8);
-}
-
-// Utility Functions
-function animateCard(element) {
-    element.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        element.style.transform = 'scale(1)';
-    }, 150);
 }
 
 function animateProgressBars() {
