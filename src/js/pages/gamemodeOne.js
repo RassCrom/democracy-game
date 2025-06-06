@@ -1,11 +1,4 @@
-import maplibregl from 'maplibre-gl';
-
-const systemNameDisplayElement = document.querySelector('.system-name');
-const counterElement = document.querySelector('.top-info-bar .counter');
-const timerElement = document.querySelector('.top-info-bar .timer');
-const startButton = document.getElementById('startButton');
-const endButton = document.getElementById('endButton');
-let timerInterval;
+import maplibregl from 'maplibre-gl'
 
 var map = new maplibregl.Map({
     container: 'map',
@@ -16,6 +9,15 @@ var map = new maplibregl.Map({
     attributionControl: false,
     renderWorldCopies: false
 });
+
+
+const container = document.getElementById('map');
+const systemNameDisplayElement = document.querySelector('.system-name');
+const counterElement = document.querySelector('.top-info-bar .counter');
+const timerElement = document.querySelector('.top-info-bar .timer');
+const startButton = document.getElementById('startButton');
+const endButton = document.getElementById('endButton');
+let timerInterval;
 
 let availableGameChallenges = [];
 let currentGameChallenge = null;
@@ -29,7 +31,7 @@ startButton.disabled = true;
 endButton.disabled = true;
 
 
-fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
+fetch('/assets/data/WorldBaseMap/Countries_Info.geojson')
     .then(res => res.json())
     .then(data => {
         const politicalDataAggregator = {};
@@ -96,7 +98,7 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                     'fill-color': [
                         'case',
                         ['boolean', ['feature-state', 'incorrect_click'], false], '#FF3860',
-                        ['boolean', ['feature-state', 'clicked'], false], '#47E18D',
+                        ['boolean', ['feature-state', 'clicked'], false], '#37E18D',
                         '#FFEEE2'
                     ],
                     'fill-opacity': [
@@ -215,14 +217,14 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                         }
                     } else {
                         const countryId = countryName;
-
+                        
                         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: true });
 
-                        // setTimeout(() => {
-                        //     if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
-                        //         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
-                        //     }
-                        // }, 300);
+                        setTimeout(() => {
+                            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
+                                map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
+                            }
+                        }, 300);
                     }
                 }
             });
@@ -250,10 +252,23 @@ function startGame() {
     endButton.disabled = false;
 
     if (map.getSource('countries')) {
-        map.removeFeatureState({ source: 'countries' });
+        clickedCountries.forEach(countryId => {
+            map.setFeatureState(
+                { source: 'countries', id: countryId },
+                { clicked: false, hover: false, incorrect_click: false }
+            );
+        });
+        if (hoveredCountryId !== null) {
+            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: hoveredCountryId })) {
+                map.setFeatureState(
+                    { source: 'countries', id: hoveredCountryId },
+                    { hover: false, clicked: false, incorrect_click: false }
+                );
+            }
+            hoveredCountryId = null;
+        }
     }
     clickedCountries.clear();
-    hoveredCountryId = null;
 
     const randomIndex = Math.floor(Math.random() * availableGameChallenges.length);
     currentGameChallenge = availableGameChallenges[randomIndex];
