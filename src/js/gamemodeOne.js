@@ -214,14 +214,14 @@ fetch('../../public/assets/data/WorldBaseMap/Countries_Info.geojson')
                         }
                     } else {
                         const countryId = countryName;
-                        
+
                         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: true });
 
-                        setTimeout(() => {
-                            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
-                                map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
-                            }
-                        }, 300);
+                        // setTimeout(() => {
+                        //     if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
+                        //         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
+                        //     }
+                        // }, 300);
                     }
                 }
             });
@@ -249,23 +249,10 @@ function startGame() {
     endButton.disabled = false;
 
     if (map.getSource('countries')) {
-        clickedCountries.forEach(countryId => {
-            map.setFeatureState(
-                { source: 'countries', id: countryId },
-                { clicked: false, hover: false, incorrect_click: false }
-            );
-        });
-        if (hoveredCountryId !== null) {
-            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: hoveredCountryId })) {
-                map.setFeatureState(
-                    { source: 'countries', id: hoveredCountryId },
-                    { hover: false, clicked: false, incorrect_click: false }
-                );
-            }
-            hoveredCountryId = null;
-        }
+        map.removeFeatureState({ source: 'countries' });
     }
     clickedCountries.clear();
+    hoveredCountryId = null;
 
     const randomIndex = Math.floor(Math.random() * availableGameChallenges.length);
     currentGameChallenge = availableGameChallenges[randomIndex];
