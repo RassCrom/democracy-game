@@ -5,40 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State of Mind - Game Mode One</title>
-
-  <script type="module" crossorigin src="/democracy-game/assets/gamemodeOne-DE0ZT-p3.js"></script>
-  <link rel="modulepreload" crossorigin href="/democracy-game/assets/main-DqLJsdTk.js">
+    <link href='https://unpkg.com/maplibre-gl@^4.0/dist/maplibre-gl.css' rel='stylesheet' />
+  <script type="module" crossorigin src="/democracy-game/assets/gamemodeOne-emLiqH9C.js"></script>
+  <link rel="modulepreload" crossorigin href="/democracy-game/assets/main-Dw-bLm5W.js">
+  <link rel="modulepreload" crossorigin href="/democracy-game/assets/maplibre-gl-DtRcNtl7.js">
+  <link rel="stylesheet" crossorigin href="/democracy-game/assets/main-Bv71qTIw.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="nav-left">
-            <a href="#">countrybase</a>
-            <a href="#">stats</a>
-            <a href="#">about</a>
-        </div>
-        <h1 class="main-title">STATE OF MIND</h1>
-        <div class="nav-right">
-            <a href="#">settings</a>
-            <a href="#">education</a>
-            <a href="#">tutorial</a>
-        </div>
-    </div>
-
-    <div class="main-content">
+    <main class="main-content">
         <div class="top-info-bar">
             <div class="info-box counter">
                 00/00
             </div>
-            <div class="system-name">MONARCHY REGIME</div>
+            <div class="heading">SYSTEM TYPE</div>
             <div class="info-box timer">
                 00:00
             </div>
         </div>
         <div id="map"></div>
-    </div>
+        <div class="controls">
+            <button id="startButton" class="btn">Start Game</button>
+            <button id="endButton" class="btn">End Game</button>
+        </div>
+    </main>
 
-
+    <!-- <script src='https://unpkg.com/maplibre-gl@^4.0/dist/maplibre-gl.js'></script> -->
 </body>
 
 </html>
