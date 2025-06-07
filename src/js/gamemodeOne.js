@@ -108,7 +108,7 @@ class GameNotification {
 window.gameNotification = new GameNotification();
 
 export function setTime() {
-    switch (savedSettings['Timer']) {
+    switch (savedSettings['Timer'] || '30 seconds') {
         case '30 seconds':
             timeLeft = 30;
             break;
@@ -142,7 +142,7 @@ const endButton = document.getElementById('endButton');
 let timerInterval;
 
 const savedSettings = JSON.parse(localStorage.getItem('gameSettings'));
-console.log(savedSettings['Timer'])
+// console.log(savedSettings['Timer'])
 
 var map = new maplibregl.Map({
     container: 'map',
