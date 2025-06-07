@@ -107,6 +107,33 @@ class GameNotification {
 
 window.gameNotification = new GameNotification();
 
+function setTime() {
+    switch (savedSettings['Timer']) {
+        case '30 seconds':
+            timeLeft = 30;
+            break;
+        case '1 minute':
+            timeLeft = 60;
+            break;
+        case '2 minutes':
+            timeLeft = 120;
+            break;
+        case '3 minutes':
+            timeLeft = 180;
+            break;
+        case '4 minutes':
+            timeLeft = 240;
+            break;
+        case '5 minutes':
+            timeLeft = 300;
+            break;
+        default:
+            timeLeft = 120;
+    }
+
+    return timeLeft
+}
+
 const systemNameDisplayElement = document.querySelector('.heading');
 const counterElement = document.querySelector('.top-info-bar .counter');
 const timerElement = document.querySelector('.top-info-bar .timer');
@@ -138,30 +165,7 @@ let hoveredCountryId = null;
 startButton.disabled = true;
 endButton.disabled = true;
 
-switch (savedSettings['Timer']) {
-    case '30 seconds':
-        timeLeft = 30;
-        break;
-    case '1 minute':
-        timeLeft = 60;
-        break;
-    case '2 minutes':
-        timeLeft = 120;
-        break;
-    case '3 minutes':
-        timeLeft = 180;
-        break;
-    case '4 minutes':
-        timeLeft = 240;
-        break;
-    case '5 minutes':
-        timeLeft = 300;
-        break;
-    default:
-        timeLeft = 120;
-}
-
-
+setTime();
 
 fetch('/democracy-game/assets/data/wm2.geojson')
     .then(res => res.json())
@@ -375,6 +379,7 @@ function updateCounter() {
 }
 
 function startGame() {
+    setTime();
     if (availableGameChallenges.length === 0) {
         gameNotification.show({
             type: 'error',

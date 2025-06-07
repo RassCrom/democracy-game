@@ -1,0 +1,310 @@
+.countrybase .start-game {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    padding: 3rem 0;
+}
+
+.countrybase .container {
+    flex-direction: column;
+}
+
+.search {
+    width: 100%;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    position: relative;
+}
+
+.search::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.search:hover::before {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.search-label {
+    font-size: var(--subheading-size);
+    font-weight: 600;
+    color: var(--font-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.search-label::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-color), var(--blue-color));
+    border-radius: 2px;
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 5px var(--green-color);
+        opacity: 0.8;
+    }
+    100% {
+        box-shadow: 0 0 20px var(--green-color), 0 0 30px var(--blue-color);
+        opacity: 1;
+    }
+}
+
+.input-form {
+    position: relative;
+    width: 100%;
+}
+
+.input-form::before {
+    content: '🔍';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    z-index: 2;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.input-form input {
+    width: 100%;
+    padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+    font-size: var(--main-size);
+    font-family: inherit;
+    color: var(--font-color);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    outline: none;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.input-form input::placeholder {
+    color: rgba(255, 234, 219, 0.5);
+    font-style: italic;
+}
+
+.input-form input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--green-color);
+    box-shadow: 
+        0 0 0 4px rgba(71, 225, 141, 0.2),
+        0 8px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    transform: translateY(-2px);
+}
+
+.input-form input:focus + .search-icon {
+    color: var(--green-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.input-form:focus-within::before {
+    opacity: 1;
+    color: var(--green-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.input-form .clear-btn {
+   position: absolute;
+   right: 1rem;
+   top: 45%;
+   transform: translateY(-45%);
+   background: none;
+   border: none;
+   color: rgba(255, 234, 219, 0.6);
+   font-size: 1.2rem;
+   cursor: pointer;
+   padding: 5px;
+   border-radius: 50%;
+   transition: all 0.3s ease;
+   opacity: 0;
+   visibility: hidden;
+}
+
+.input-form .clear-btn:hover {
+   color: var(--red-color);
+   background: rgba(255, 56, 96, 0.1);
+}
+
+.input-form.has-content .clear-btn {
+   opacity: 1;
+   visibility: visible;
+}
+.search::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--green-color), var(--blue-color), var(--purple-color), var(--orange-color));
+    border-radius: 26px;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search:hover::after {
+    opacity: 0.3;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background: linear-gradient(45deg, var(--green-color), var(--blue-color), var(--purple-color), var(--orange-color));
+    }
+    25% {
+        background: linear-gradient(45deg, var(--blue-color), var(--purple-color), var(--orange-color), var(--green-color));
+    }
+    50% {
+        background: linear-gradient(45deg, var(--purple-color), var(--orange-color), var(--green-color), var(--blue-color));
+    }
+    75% {
+        background: linear-gradient(45deg, var(--orange-color), var(--green-color), var(--blue-color), var(--purple-color));
+    }
+}
+
+.countries {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+   gap: 1.5rem;
+   width: 100%;
+   margin-bottom: 2rem;
+}
+
+.country-card {
+   position: relative;
+   padding: 1.5rem;
+   background: var(--glass-bg);
+   backdrop-filter: blur(20px);
+   border-radius: 16px;
+   border: 1px solid var(--border-color);
+   box-shadow: 
+       0 8px 32px rgba(0, 0, 0, 0.3),
+       0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   cursor: pointer;
+}
+
+.country-card:hover {
+   transform: translateY(-8px);
+   background: rgba(255, 255, 255, 0.12);
+   box-shadow: 
+       0 20px 40px rgba(0, 0, 0, 0.4),
+       0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.country-card h4 {
+   font-size: 1.3rem;
+   font-weight: 600;
+   color: var(--font-color);
+   margin-bottom: 0.5rem;
+   text-transform: capitalize;
+}
+
+.country-info {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.country-stat {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 0.9rem;
+   color: rgba(255, 234, 219, 0.8);
+}
+
+.stat-label {
+   font-weight: 500;
+   color: rgba(255, 234, 219, 0.6);
+}
+
+.stat-value {
+   font-weight: 600;
+   color: var(--green-color);
+}
+
+.country-type {
+   position: absolute;
+   top: 1rem;
+   right: 1rem;
+   padding: 0.3rem 0.8rem;
+   background: linear-gradient(135deg, var(--blue-color), var(--purple-color));
+   color: white;
+   font-size: 0.75rem;
+   font-weight: 600;
+   border-radius: 12px;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .search {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .input-form input {
+        padding: 1rem 1.2rem 1rem 3rem;
+    }
+    
+    .input-form::before {
+        left: 16px;
+        font-size: 1rem;
+    }
+
+    .countries {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .country-card {
+        padding: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .search {
+        padding: 1rem;
+    }
+}

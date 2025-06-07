@@ -459,7 +459,7 @@
 }
 
 /* Animations */
-@keyframes slideIn {
+@keyframes slideIn2 {
     0% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.8) rotateX(-10deg);
@@ -470,7 +470,7 @@
     }
 }
 
-@keyframes slideOut {
+@keyframes slideOut2 {
     0% {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1) rotateX(0deg);
@@ -492,11 +492,11 @@
 }
 
 .notification.show {
-    animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation: slideIn2 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 .notification.hide {
-    animation: slideOut 0.4s ease-in forwards;
+    animation: slideOut2 0.4s ease-in forwards;
 }
 
 /* Overlay */
