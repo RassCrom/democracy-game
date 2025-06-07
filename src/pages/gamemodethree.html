@@ -4,29 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  <script type="module" crossorigin src="/democracy-game/assets/main-rRUEWK-y.js"></script>
-  <link rel="stylesheet" crossorigin href="/democracy-game/assets/main-BrsPEQf5.css">
+  <script type="module" crossorigin src="/democracy-game/assets/gamemodethree-CgT8gRli.js"></script>
+  <link rel="modulepreload" crossorigin href="/democracy-game/assets/main-D45ISpvz.js">
+  <link rel="modulepreload" crossorigin href="/democracy-game/assets/maplibre-gl-DtRcNtl7.js">
+  <link rel="stylesheet" crossorigin href="/democracy-game/assets/main-Cv09qJ4i.css">
 </head>
 <body>
     <main class="gamemode-three">
         <div class="container">
             <section class="titles">
-                
+                <div class="titles-counter">
+                    <span id="counter-correct">00</span>
+                    /
+                    <span id="counter-overall">00</span>
+                </div>
+                <div class="titles-region">EUROPE</div>
+                <div class="titles-timer">
+                    <span id="timer">01:00</span>
+                    <div class="hearts" id="hearts">
+                        <span class="heart">♥</span>
+                        <span class="heart">♥</span>
+                        <span class="heart">♥</span>
+                        <span class="heart">♥</span>
+                    </div>
+                </div>
             </section>
 
-            <section class="map">
-                <div id="map-three"></div>
-            </section>
-s
-            <section class="content">
+            <div class="content">
+                <section class="map-sect">
+                    <div id="map-three" class="map"></div>
+                </section>
 
-            </section>
+                <section class="map-content">
+                    <div class="img">
+                        <img id="person-image" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjNjY3ZWVhIi8+Cjx0ZXh0IHg9IjYwIiB5PSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+UG9ydHJhaXQ8L3RleHQ+Cjwvc3ZnPgo=" alt="Historical Figure">
+                    </div>
+                    <blockquote class="quote">
+                        <p class="quote-text placeholder-quote" id="quote-text">Click "Start Game" to begin! You'll see a quote from a historical figure and need to guess which country they're from.</p>
+                        <cite class="quote-cite" id="quote-cite">— Game Instructions</cite>
+                    </blockquote>
+                </section>
+            </div>
 
-            <section class="game-buttons">
+            <section class="game-buttons" id="country-buttons"></section>
 
-            </section>
+            <div class="controls">
+                <button class="btn" id="start-btn">Start Game</button>
+                <button class="btn" id="next-btn" style="display: none;">Next Quote</button>
+                <button class="btn" id="end-btn" style="display: none;">End Game</button>
+            </div>
         </div>
     </main>
-    
+
+    <div class="game-over" id="game-over">
+        <div class="game-over-content">
+            <h2>Game Over!</h2>
+            <div class="score" id="final-score"></div>
+            <button class="btn" onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+    
+
 </body>
 </html>
