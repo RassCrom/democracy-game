@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Charles de Gaulle",
+    "country": "FR",
+    "quote": "How can you govern a country with 246 types of cheese?",
+    "image": "degoll.png"
+  },
+
+  {
+    "name": "Francisco Franco",
+    "country": "ES",
+    "quote": "Our regime is based on bayonets and blood, not on hypocritical elections.",
+    "image": "franko.png"
+  },
+  {
+    "name": "Angela Merkel",
+    "country": "DE",
+    "quote": "We can do this.",
+    "image": "merkel.png"
+  },
+  {
+    "name": "Benito Mussolini",
+    "country": "IT",
+    "quote": "It is better to live one day as a lion than 100 years as a sheep.",
+    "image": "mussolini.png"
+  },
+  {
+    "name": "Margaret Thatcher",
+    "country": "GB",
+    "quote": "Being powerful is like being a lady. If you have to tell people you are, you aren't.",
+    "image": "tetcher.png"
+  }
+
+]

@@ -107,7 +107,7 @@ class GameNotification {
 
 window.gameNotification = new GameNotification();
 
-function setTime() {
+export function setTime() {
     switch (savedSettings['Timer']) {
         case '30 seconds':
             timeLeft = 30;

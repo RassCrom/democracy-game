@@ -224,6 +224,10 @@
 }
 
 @media screen and (max-width: 600px) {
+    main {
+        padding: 4.5rem 0 2rem;
+    }
+
     .settings-modal {
         min-width: 90%;
         padding: 2rem 1.5rem;
@@ -242,5 +246,7 @@
 
     .settings-actions {
         flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
     }
 }

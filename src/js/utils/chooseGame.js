@@ -6,6 +6,13 @@ export const gameModes = [
     color: "var(--green-color)",
     info: "Given political system find every country within a certain period of time"
   },
+  {
+    name: "Figure Mode",
+    route: "/gamemodethree",
+    icon: "🎯",
+    color: "var(--orange-color)",
+    info: "Given political system find every country within a certain period of time"
+  },
 ];
 
 export function createGameModeModal() {
@@ -102,7 +109,7 @@ export function createGameModeModal() {
     `;
 
     modeCard.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <span style="font-size: 1.5rem;">${mode.icon}</span>
           <h3 style="

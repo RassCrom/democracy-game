@@ -6,27 +6,27 @@ import { createGameModeModal } from './utils/chooseGame.js';
 const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
 const RIGHT_LINKS = ['settings', 'educational', 'tutorial'];
 const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS];
-const GAMEMODES = ['gamemodeone']
+const GAMEMODES = ['gamemodeone', 'gamemodethree']
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
 document.body.prepend(wrapper);
 
 const mains = document.getElementsByTagName('main')[0];
+const mainContent = document.querySelector('.main-content');
 
 const activeNavUrl = window.location.pathname;
 let activeNav = activeNavUrl.split('/').slice(-1)
 activeNav[0] = activeNav[0].replace(/\.html$/, '')
 activeNav = activeNav[0]
 console.log(activeNav)
+
 const header = new Header();
-wrapper.append(header.render());
-
-const mainContent = document.querySelector('.main-content');
-if (activeNav === 'gamemodeone') wrapper.append(mainContent);
-
 const footer = new Footer();
-if (ALL_LINKS.includes(activeNav) || activeNav.includes(GAMEMODES)) {
+
+wrapper.append(header.render());
+if (activeNav === GAMEMODES[0]) wrapper.append(mainContent);
+if (ALL_LINKS.includes(activeNav) || GAMEMODES.includes(activeNav)) {
     mains && wrapper.append(mains);
     wrapper.append(footer.render());
 }
