@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="344.158158pt" height="266.112pt" viewBox="0 0 344.158158 266.112" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2025-06-04T13:25:06.695607</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.3, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 266.112 
+L 344.158158 266.112 
+L 344.158158 0 
+L 0 0 
+L 0 266.112 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="PatchCollection_1">
+    <path d="M 15.643553 95.728648 
+L 22.35278 85.470913 
+L 22.992677 30.110074 
+L 30.070331 15.566964 
+L 43.004015 12.096 
+L 53.300546 12.94921 
+L 58.264598 20.47283 
+L 54.037397 69.298943 
+L 75.34792 120.917338 
+L 82.910344 135.28593 
+L 78.547407 145.000738 
+L 68.464176 147.094963 
+L 52.331004 130.186142 
+L 36.081487 127.548987 
+L 28.751754 122.468599 
+L 16.070151 103.892194 
+z
+" clip-path="url(#p9701099665)" style="fill: #ffeadb; stroke: #000000; stroke-width: 0.5"/>
+    <path d="M 251.629962 201.660769 
+L 279.436412 208.17606 
+L 284.303511 204.918415 
+L 291.458727 206.372716 
+L 301.406224 191.8296 
+L 300.572419 183.782411 
+L 313.738792 178.740785 
+L 328.514605 218.879804 
+L 328.37887 247.927277 
+L 324.326186 254.016 
+L 294.251009 223.378502 
+L 266.405775 212.248153 
+z
+" clip-path="url(#p9701099665)" style="fill: #ffeadb; stroke: #000000; stroke-width: 0.5"/>
+    <path d="M 115.234859 235.129342 
+L 115.661458 219.849374 
+L 137.456751 226.209543 
+L 152.116218 236.796927 
+L 166.736905 245.871849 
+L 168.656598 251.883011 
+L 122.680938 247.384348 
+L 121.187845 239.240197 
+z
+" clip-path="url(#p9701099665)" style="fill: #ffeadb; stroke: #000000; stroke-width: 0.5"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9701099665">
+   <rect x="0" y="-0" width="344.158158" height="266.112"/>
+  </clipPath>
+ </defs>
+</svg>
