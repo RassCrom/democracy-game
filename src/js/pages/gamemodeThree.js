@@ -1,8 +1,8 @@
 import maplibregl from 'maplibre-gl';
 
-const savedSettings = JSON.parse(localStorage.getItem('gameSettings'));
+const timerLocal = JSON.parse(localStorage.getItem('gameSettings'))['Timer'] || '30 seconds';
 function setTime() {
-    switch (savedSettings['Timer'] || '30 seconds') {
+    switch (timerLocal) {
         case '30 seconds':
             timeLeft = 30;
             break;
