@@ -6,7 +6,13 @@
 
 /* PAGES */
 @import url('./pages/home.css');
+@import url('./pages/about.css');
+@import url('./pages/settings.css');
+@import url('./pages/statistical.css');
+@import url('./pages/countrybase.css');
 @import url('./pages/gamemodeOne.css');
+@import url('./pages/gamemodethree.css');
 
 /* COMPONENTS */
 @import url('./components/header.css');
+@import url('./components/footer.css');

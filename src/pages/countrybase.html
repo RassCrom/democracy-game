@@ -7,9 +7,28 @@
     <link rel="stylesheet" href="../scss/main.css">
 </head>
 <body>
-    <header id="header" class="header"></header>
-    COUNTRYBASE
+    <main class="countrybase">
+        <div class="container">
+            <section class="search">
+                <h3 class="search-label">
+                    Find country
+                </h3>
+                <div class="input-form">
+                    <input type="text" placeholder="Type a country name..." />
+                    <button type="button" class="clear-btn">✕</button>
+                </div>
+            </section>
+
+            <section class="countries" id="countries-container"></section>
+
+            <section class="start-game">
+                <button id="gameChoose" class="btn">start game</button>
+                <button id="game-mode" class="btn">game mode</button>
+            </section>
+        </div>
+    </main>
     
     <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/countrybase.js"></script>
 </body>
 </html>

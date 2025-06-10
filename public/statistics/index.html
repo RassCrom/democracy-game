@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/democracy-game/src/scss/main.css">
+</head>
+<body>    
+    <main class="stats">
+        <div class="container">
+            <section class="stats">
+                <h2 class="heading">Global Knowledge Stats Dashboard</h2>
+                
+                <div class="stats-numbers">
+                    <div class="stats-numbers__countries interactive-card">
+                        <h3 id="countryCounter">0</h3>
+                        <p>Countries Analyzed</p>
+                    </div>
+                    <div class="stats-numbers__regimes">
+                        <div class="numbers-regimes__card interactive-card" data-regime="democratic">
+                            <h3 id="democraticCounter">0</h3>
+                            <p>Democratic</p>
+                        </div>
+                        <div class="numbers-regimes__card interactive-card" data-regime="authoritarian">
+                            <h3 id="authoritarianCounter">0</h3>
+                            <p>Authoritarian</p>
+                        </div>
+                        <div class="numbers-regimes__card interactive-card" data-regime="hybrid">
+                            <h3 id="hybridCounter">0</h3>
+                            <p>Hybrid</p>
+                        </div>
+                        <div class="numbers-regimes__card interactive-card" data-regime="monarchy">
+                            <h3 id="monarchyCounter">0</h3>
+                            <p>Monarchy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-content">
+                    <div class="stats-content__map">
+                        <h3 class="chart-title">🗺️ Global Regime Map</h3>
+                        <div id="mapRegimes"></div>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #47E18D;"></div>
+                                <span>Democratic</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #FF3860;"></div>
+                                <span>Authoritarian</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #E39B6B;"></div>
+                                <span>Hybrid</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #ba68c8;"></div>
+                                <span>Monarchy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-content__viz">
+                        <div class="map-filter">
+                            <input type="text" class="filter-input" placeholder="🔍 Search countries or regimes..." id="filterInput">
+                        </div>
+                        <div class="control-panel">
+                            <button class="control-btn active" data-chart="donut">📊 Distribution</button>
+                            <button class="control-btn" data-chart="bar">📈 Regional</button>
+                            <button class="control-btn" data-chart="line">📉 Trends</button>
+                        </div>
+                        <h3 class="chart-title" id="chartTitle">📊 Regime Distribution</h3>
+                        <div id="chartContainer" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <!-- Advanced Statistics Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-value" id="avgScore">7.2</div>
+                        <div class="stat-label">Avg Democracy Score</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-value" id="totalPop">7.8B</div>
+                        <div class="stat-label">Total Population</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-value" id="freeCountries">85</div>
+                        <div class="stat-label">Free Countries</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 39%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-value" id="partlyFree">61</div>
+                        <div class="stat-label">Partly Free</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 28%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="rating">
+                <h2 class="heading">Global Rankings</h2>
+                <div class="rating-content">
+                    <div class="content-top">
+                        <h3>🏆 Top Performers</h3>
+                        <div id="topCountries"></div>
+                    </div>
+                    <div class="content-bottom">
+                        <h3>📊 Bottom Rankings</h3>
+                        <div id="bottomCountries"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="start-game">
+                <button class="btn">start game</button>
+                <button class="btn">game mode</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+    
+    <script type="module" src="/democracy-game/src/js/main.js"></script>
+    <script type="module" src="/democracy-game/src/js/pages/stats.js"></script>
+</body>
+</html>
