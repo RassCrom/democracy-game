@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Drag the Country</title>
+		<script type="module" crossorigin src="/democracy-game/assets/dragthecountry-CTps9_bH.js"></script>
+		<link rel="modulepreload" crossorigin href="/democracy-game/assets/header-CHALseqc.js">
+		<link rel="stylesheet" crossorigin href="/democracy-game/assets/header-Cv09qJ4i.css">
+		<link rel="stylesheet" crossorigin href="/democracy-game/assets/dragthecountry-CFDJ-xhT.css">
+	</head>
+	<body class="drag-body">
+		<img
+			src="/democracy-game/assets/images/kazakhstan-shape.png"
+			alt="kazakhstan-shape"
+			class="bg-img"
+		/>
+		<img
+			src="/democracy-game/assets/images/russia-shape.png"
+			alt="russia-shape"
+			class="bg-img"
+		/>
+		<header id="header" class="header"></header>
+		<div class="drag-header">
+			<div
+				class="drag-header__subtitle drag-header__element"
+				id="attempts-counter"
+			>
+				Attempts: 10
+			</div>
+			<div class="drag-header__title drag-header__element">
+				Drag the Country to Its Government
+			</div>
+			<div class="drag-header__subtitle drag-header__element" id="timer">
+				00:00
+			</div>
+		</div>
+		<main class="drag-main">
+			<div class="drag-main__countries" id="countries"></div>
+			<div class="drag-main__governments square-layout">
+				<div class="government-block" data-gov="Democracy">
+					<div class="government-title">
+						Democracy
+						<span class="guessed-counter" id="guessed-Democracy">0</span>
+					</div>
+					<div class="government-content"></div>
+				</div>
+				<div class="government-block" data-gov="Authoritarian">
+					<div class="government-title">
+						Authoritarian
+						<span class="guessed-counter" id="guessed-Authoritarian">0</span>
+					</div>
+					<div class="government-content"></div>
+				</div>
+				<div class="government-block" data-gov="Monarchy">
+					<div class="government-title">
+						Monarchy
+						<span class="guessed-counter" id="guessed-Monarchy">0</span>
+					</div>
+					<div class="government-content"></div>
+				</div>
+				<div class="government-block" data-gov="Totalitarian">
+					<div class="government-title">
+						Totalitarian
+						<span class="guessed-counter" id="guessed-Totalitarian">0</span>
+					</div>
+					<div class="government-content"></div>
+				</div>
+			</div>
+		</main>
+		<div class="drag-footer">
+			<button class="btn" id="check-btn">Check</button>
+			<button class="btn" id="restart-btn">Restart</button>
+		</div>
+	</body>
+</html>
