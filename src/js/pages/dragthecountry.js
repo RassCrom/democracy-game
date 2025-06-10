@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startTimer()
 
     // Drag and drop logic
-    fetch('/assets/countries_politicalsystem/countries_simple.json')
+    fetch('/democracy-game/assets/countries_politicalsystem/countries_simple.json')
         .then(res => res.json())
         .then(countries => {
             const filtered = countries.filter(c => c.regime && c.regime !== 'N/A' && c.regime !== 'Hybrid')
@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.className = 'country-card'
                 // SVG
                 const img = document.createElement('img')
-                img.className = 'country-shape'
+                img.className = 'country-shape__game'
                 img.draggable = true
                 img.alt = country.name
                 img.dataset.country = country.name
-                img.src = `/assets/images/generated_svgs/${country.iso_a2 ? country.iso_a2.toLowerCase() + '-shape.svg' : 'placeholder.svg'}`
-                img.onerror = function () { this.src = '/assets/images/placeholder.svg' }
+                img.src = `/democracy-game/assets/images/generated_svgs/${country.iso_a2 ? country.iso_a2.toLowerCase() + '-shape.svg' : 'placeholder.svg'}`
+                img.onerror = function () { this.src = '/democracy-game/assets/images/placeholder.svg' }
                 // Country name
                 const label = document.createElement('div')
                 label.className = 'country-label'
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let gameActive = true
             const guessedCountries = new Set()
 
-            countriesContainer.querySelectorAll('.country-shape').forEach(country => {
+            countriesContainer.querySelectorAll('.country-shape__game').forEach(country => {
                 country.addEventListener('dragstart', (e) => {
                     if (!gameActive) {
                         e.preventDefault()
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             block.appendChild(draggedCountry)
                         }
-                        const countryName = draggedCountry.querySelector('.country-shape').dataset.country
+                        const countryName = draggedCountry.querySelector('.country-shape__game').dataset.country
                         assignments[countryName] = block.dataset.gov
                         draggedCountry = null
                     }
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 countriesContainer.classList.remove('drag-over')
                 if (draggedCountry) {
                     countriesContainer.appendChild(draggedCountry)
-                    const countryName = draggedCountry.querySelector('.country-shape').dataset.country
+                    const countryName = draggedCountry.querySelector('.country-shape__game').dataset.country
                     delete assignments[countryName]
                     draggedCountry = null
                 }
@@ -157,11 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const card = document.querySelector(`[data-country='${country}']`).parentElement
                     if (assignments[country] !== correct[country]) {
                         allCorrect = false
-                        card.querySelector('.country-shape').style.border = '2px solid red'
+                        card.querySelector('.country-shape__game').style.border = '2px solid red'
                         newIncorrect.add(country)
                         hasAnyIncorrect = true
                     } else {
-                        card.querySelector('.country-shape').style.border = '2px solid green'
+                        card.querySelector('.country-shape__game').style.border = '2px solid green'
                         const regime = correct[country]
                         if (guessedCounters[regime] !== undefined) {
                             guessedCounters[regime]++
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('restart-btn').addEventListener('click', () => {
                 document.querySelectorAll('.country-card').forEach(card => {
                     countriesContainer.appendChild(card)
-                    card.querySelector('.country-shape').style.border = ''
+                    card.querySelector('.country-shape__game').style.border = ''
                 })
                 assignments = {}
                 regimeTypes.forEach(type => guessedCounters[type] = 0)
