@@ -3,7 +3,7 @@
 	height: calc(100vh - 300px);
 	max-width: 1264px;
 	width: 100%;
-	margin: 150px auto;
+	margin: 8rem auto 0;
 	padding: 0 2rem;
 }
 
@@ -58,7 +58,7 @@
 		}
 	}
 }
-.country-shape {
+.country-shape__game {
 	width: 120px;
 	height: auto;
 	cursor: grab;
