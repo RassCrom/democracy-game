@@ -1,49 +1,65 @@
 import Header from './components/header.js';
 import Footer from './components/footer.js';
-
 import { createGameModeModal } from './utils/chooseGame.js';
 
 const LEFT_LINKS = ['countrybase', 'statistics', 'about'];
 const RIGHT_LINKS = ['settings', 'educational', 'tutorial'];
-const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS];
-const GAMEMODES = ['gamemodeone', 'gamemodethree']
+const ALL_LINKS = [...LEFT_LINKS, ...RIGHT_LINKS, 'home'];
+const GAMEMODES = ['gamemodeone', 'gamemodethree'];
+
+const currentPath = window.location.pathname;
+const activeNav = currentPath.split('/').pop().replace(/\.html$/, '');
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
-document.body.prepend(wrapper);
 
-const mains = document.getElementsByTagName('main')[0];
+const mainElement = document.querySelector('main');
 const mainContent = document.querySelector('.main-content');
-
-const activeNavUrl = window.location.pathname;
-let activeNav = activeNavUrl.split('/').slice(-1)
-activeNav[0] = activeNav[0].replace(/\.html$/, '')
-activeNav = activeNav[0]
-console.log(activeNav)
 
 const header = new Header();
 const footer = new Footer();
 
-wrapper.append(header.render());
-if (activeNav === GAMEMODES[0]) wrapper.append(mainContent);
-if (ALL_LINKS.includes(activeNav) || GAMEMODES.includes(activeNav)) {
-    mains && wrapper.append(mains);
+if (activeNav !== 'dragthecountry') {
+    document.body.prepend(wrapper);
+}
+
+if (ALL_LINKS.includes(activeNav)) {
+    wrapper.append(header.render());
+}
+
+if (activeNav === GAMEMODES[0]) {
+    wrapper.append(mainContent);
+}
+
+if ((ALL_LINKS.includes(activeNav) || GAMEMODES.includes(activeNav)) && activeNav !== 'home') {
+    if (mainElement) wrapper.append(mainElement);
     wrapper.append(footer.render());
 }
 
-ALL_LINKS.forEach((link) => {
-    const activeLink = document.querySelector(`a[data-nav=${link}]`);
-    if (activeNav === link) {
-        activeLink.classList.add('active-nav')
+if (activeNav === 'dragthecountry') {
+    console.log(activeNav);
+    document.body.append(footer.render());
+}
+
+ALL_LINKS.forEach(link => {
+    const navLink = document.querySelector(`a[data-nav="${link}"]`);
+    if (!navLink) return;
+
+    if (activeNav === link && activeNav !== 'home') {
+        navLink.classList.add('active-nav');
+        console.log(link);
     } else {
-        activeLink.classList.remove('active-nav')
+        navLink.classList.remove('active-nav');
     }
-})
+});
 
-const gamemode = document.getElementById('gamemode');
-gamemode?.addEventListener('click', () => {
-    window.location.href = '/democracy-game/src/pages/settings';
-})
-gamemode?.setAttribute('role', 'link')
+const gamemodeBtn = document.getElementById('gamemode');
+if (gamemodeBtn) {
+    gamemodeBtn.setAttribute('role', 'link');
+    gamemodeBtn.addEventListener('click', () => {
+        window.location.href = '/democracy-game/src/pages/settings';
+    });
+}
 
-document.getElementById('gameChoose')?.addEventListener('click', createGameModeModal);
+const gameChooseBtn = document.getElementById('gameChoose');
+gameChooseBtn?.addEventListener('click', createGameModeModal);

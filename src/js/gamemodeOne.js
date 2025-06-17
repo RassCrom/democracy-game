@@ -139,12 +139,21 @@ const counterElement = document.querySelector('.top-info-bar .counter');
 const timerElement = document.querySelector('.top-info-bar .timer');
 const startButton = document.getElementById('startButton');
 const endButton = document.getElementById('endButton');
+let timerLocal;
 let timerInterval;
+const gameSettingsString = localStorage.getItem('gameSettings');
 
-// const savedSettings = JSON.parse(localStorage.getItem('gameSettings'));
-
-const timerLocal = JSON.parse(localStorage.getItem('gameSettings'))['Timer'] || '30 seconds';
-// console.log(savedSettings['Timer'])
+if (gameSettingsString === null) {
+    timerLocal = '30 seconds';
+} else {
+    try {
+        const gameSettings = JSON.parse(gameSettingsString);
+        timerLocal = gameSettings['Timer'] || '30 seconds';
+    } catch (e) {
+        console.error("Error parsing gameSettings from localStorage:", e);
+        timerLocal = '30 seconds';
+    }
+}
 
 var map = new maplibregl.Map({
     container: 'map',

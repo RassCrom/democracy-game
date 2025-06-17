@@ -1,5 +1,7 @@
 import maplibregl from 'maplibre-gl'
 
+document.title = '🗳️ Political Regime';
+
 var map = new maplibregl.Map({
     container: 'map',
     style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',

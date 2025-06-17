@@ -1,7 +1,9 @@
+import { createGameModeModal } from '../utils/chooseGame';
+
 class Footer {
     constructor() {
-        this.gameLinks = ['paly now', 'game modes', 'leaderboard', 'how to play'];
-        this.aboutLinks = ['our team', 'project info', 'TU Vienna', 'Contact'];
+        this.gameLinks = ['play now', 'settings', 'statistics', 'countrybase'];
+        this.aboutLinks = ['project info', 'TU Vienna', 'MS Cartography'];
     }
 
     render() {
@@ -67,15 +69,48 @@ class Footer {
     createFooterLinks(linksList) {
         const footerLinks = document.createElement('div');
         footerLinks.classList.add('footer-links');
+
         linksList.forEach((link) => {
             const aLink = document.createElement('a');
             aLink.classList.add('footer-link');
             aLink.textContent = link;
-            aLink.href = '#'
-            footerLinks.appendChild(aLink);
-        })
 
-        return footerLinks
+            switch (link.toLowerCase()) {
+                case 'play now':
+                    aLink.href = '#';
+                    aLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        createGameModeModal();
+                    });
+                    break;
+                case 'settings':
+                    aLink.href = '/democracy-game/src/pages/settings';
+                    break;
+                case 'statistics':
+                    aLink.href = '/democracy-game/src/pages/statistics';
+                    break;
+                case 'countrybase':
+                    aLink.href = '/democracy-game/src/pages/countrybase';
+                    break;
+                case 'project info':
+                    aLink.href = '/democracy-game/src/pages/about';
+                    break;
+                case 'tu vienna':
+                    aLink.href = 'https://www.tuwien.at/';
+                    aLink.target = '_blank'; // Optional: open in a new tab
+                    break;
+                case 'MS Cartography':
+                    aLink.href = 'https://cartographymaster.eu/';
+                    aLink.target = '_blank'; // Optional: open in a new tab
+                    break;
+                default:
+                    aLink.href = '#';
+            }
+
+            footerLinks.appendChild(aLink);
+        });
+
+        return footerLinks;
     }
 
     createGameSection() {

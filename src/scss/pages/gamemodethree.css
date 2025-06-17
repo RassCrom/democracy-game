@@ -14,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border-radius: 16px;
@@ -64,8 +64,8 @@
 .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: stretch;
+    gap: 2rem;
+    /* align-items: stretch; */
     width: 100%;
     margin-top: 3rem;
 }
@@ -81,7 +81,7 @@
 }
 
 #map-three {
-    height: 576px;
+    height: 100%;
     width: 100%;
 }
 
@@ -92,8 +92,8 @@
 .map-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
+    /* gap: 2rem; */
+    padding: 1rem;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -107,8 +107,8 @@
 }
 
 .img img {
-    width: 200px;
-    height: 200px;
+    width: 10rem;
+    height: 10rem;
     object-fit: cover;
     border-radius: 50%;
     border: 4px solid var(--green-color);
@@ -131,7 +131,7 @@
 
 .quote-text {
     font-family: "Graduate", serif;
-    font-size: var(--main-size);
+    font-size: var(--caption-size);
     color: var(--font-color);
     line-height: 1.6;
     text-align: center;
@@ -147,6 +147,7 @@
     font-size: var(--caption-size);
     color: var(--orange-color);
     opacity: 0.8;
+    padding-right: 1rem;
 }
 
 .game-buttons {
@@ -155,6 +156,14 @@
     gap: 1rem;
     justify-content: center;
     padding: 2rem;
+}
+
+.gamemode-three #end-btn {
+    background-color: #ff4757;
+    border: 2px solid #f73847;
+    box-shadow: 0 4px 15px rgba(222, 74, 74, 0.3), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: var(--font-color);
 }
 
 .country-btn {
@@ -202,7 +211,7 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .game-over {

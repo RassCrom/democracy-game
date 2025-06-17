@@ -74,7 +74,7 @@ class Header {
             a.setAttribute('data-nav', linkText)
             a.href = `/democracy-game/src/pages/${linkText}`;
             a.textContent = linkText;
-            if (linkText === 'tutorial') {
+            if (linkText === 'tutorial' || linkText === 'educational') {
                 a.addEventListener('click', function(event) {
                     event.preventDefault();
                 });

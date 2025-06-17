@@ -1,3 +1,5 @@
+document.title = "⚙️ Settings";
+
 document.addEventListener('click', function(event) {
     if (!event.target.closest('.setting-dropdown')) {
     closeAllDropdowns();
@@ -11,17 +13,17 @@ function toggleDropdown(button) {
     closeAllDropdowns();
     
     if (!isActive) {
-    dropdown.classList.add('active');
-    button.classList.add('active');
+        dropdown.classList.add('active');
+        button.classList.add('active');
     }
 }
 
 function closeAllDropdowns() {
     document.querySelectorAll('.dropdown-menu').forEach(menu => {
-    menu.classList.remove('active');
+        menu.classList.remove('active');
     });
     document.querySelectorAll('.dropdown-button').forEach(button => {
-    button.classList.remove('active');
+        button.classList.remove('active');
     });
 }
 
@@ -40,15 +42,22 @@ function selectOption(option, value) {
     }, 200);
 }
 
+let settings = {
+    'Game Mode': 'Political System',
+    'Difficulty': 'Normal',
+    'Timer': '1 minute',
+    'Continent': 'all',
+    'Organizations': 'All',
+    'Distance Unit': 'Kilometers'
+};
+
+function initialSettings() {
+    localStorage.setItem('gameSettings', JSON.stringify(settings));
+    
+    console.log('Settings saved:', settings);
+}
+
 function saveSettings() {
-    const settings = {
-        'Game Mode': 'Political System',
-        'Difficulty': 'Normal',
-        'Timer': '2 minutes',
-        'Region': 'World Map',
-        'Organizations': 'All',
-        'Distance Unit': 'Kilometers'
-    };
     document.querySelectorAll('.setting-group').forEach(group => {
         const label = group.querySelector('.setting-label').textContent;
         const value = group.querySelector('.dropdown-button span:first-child').textContent;
@@ -57,7 +66,7 @@ function saveSettings() {
     localStorage.setItem('gameSettings', JSON.stringify(settings));
     
     console.log('Settings saved:', settings);
-    alert('Settings saved successfully!');
+    // alert('Settings saved successfully!');
 }
 
 function resetSettings() {
@@ -93,11 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelector('.btn-primary').addEventListener('click', () => {
-      saveSettings();
-    });
+  const saveBtn = document.querySelector('.btn-primary');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => saveSettings());
+  }
 
-  document.querySelector('.btn-secondary').addEventListener('click', () => {
-      resetSettings();
-    });
+  const resetBtn = document.querySelector('.btn-secondary');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => resetSettings());
+  }
 });

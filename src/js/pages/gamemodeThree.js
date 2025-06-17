@@ -1,6 +1,22 @@
 import maplibregl from 'maplibre-gl';
 
-const timerLocal = JSON.parse(localStorage.getItem('gameSettings'))['Timer'] || '30 seconds';
+document.title = '🧍 Historical Figure';
+
+let timerLocal;
+const gameSettingsString = localStorage.getItem('gameSettings');
+
+if (gameSettingsString === null) {
+    timerLocal = '30 seconds';
+} else {
+    try {
+        const gameSettings = JSON.parse(gameSettingsString);
+        timerLocal = gameSettings['Timer'] || '30 seconds';
+    } catch (e) {
+        console.error("Error parsing gameSettings from localStorage:", e);
+        timerLocal = '30 seconds';
+    }
+}
+
 function setTime() {
     switch (timerLocal) {
         case '30 seconds':
@@ -56,13 +72,13 @@ const gameData = [
     },
     {
         "name": "Adolf Hitler",
-        "country": "Germany",
+        "country": "Austria",
         "quote": "The victor will never be asked if he told the truth.",
         "image": "hitler.webp"
     },
     {
         "name": "Joseph Stalin",
-        "country": "Russia",
+        "country": "Georgia",
         "quote": "A single death is a tragedy; a million deaths is a statistic.",
         "image": "stalin.jpg"
     },
@@ -330,7 +346,7 @@ function initMap() {
     });
 
     map.on('load', function() {
-        map.getCanvas().style.filter = 'hue-rotate(120deg) saturate(1.2) brightness(0.8)';
+        // map.getCanvas().style.filter = 'hue-rotate(120deg) saturate(1.2) brightness(0.8)';
         loadCountryData();
     });
 }
@@ -361,9 +377,9 @@ async function loadCountryData() {
                     '#47E18D', // Green for correct
                     ['==', ['get', 'answer_status'], 'incorrect'],
                     '#ff4757', // Red for incorrect
-                    '#ba68c8'  // Default blue
+                    '#E39B6B'  // Default blue
                 ],
-                'fill-opacity': .7
+                'fill-opacity': .8
             }
         });
 

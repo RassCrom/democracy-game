@@ -378,19 +378,19 @@ function setupEventListeners() {
         });
     });
 
-    // Filter functionality
-    document.getElementById('filterInput').addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        filterData(query);
-    });
+    // // Filter functionality
+    // document.getElementById('filterInput').addEventListener('input', function() {
+    //     const query = this.value.toLowerCase();
+    //     filterData(query);
+    // });
 
-    // Regime card filtering
-    document.querySelectorAll('.numbers-regimes__card').forEach(card => {
-        card.addEventListener('click', function() {
-            const regime = this.dataset.regime;
-            filterByRegime(regime);
-        });
-    });
+    // // Regime card filtering
+    // document.querySelectorAll('.numbers-regimes__card').forEach(card => {
+    //     card.addEventListener('click', function() {
+    //         const regime = this.dataset.regime;
+    //         filterByRegime(regime);
+    //     });
+    // });
 }
 
 // Filter Functions
@@ -466,58 +466,234 @@ function createCountryElement(country, index) {
     return div;
 }
 
-// Map Initialization (Placeholder)
+
 function initializeMap() {
-    const mapContainer = document.getElementById('mapRegimes');
-    
-    // Create a simple SVG map placeholder
-    const svg = d3.select(mapContainer)
-        .append('svg')
-        .attr('width', '100%')
-        .attr('height', '100%')
-        .attr('viewBox', '0 0 800 400');
+    const map = new maplibregl.Map({
+        container: 'mapRegimes',
+        style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+        center: [0, 20],
+        zoom: 1.8,
+        maxZoom: 8,
+        minZoom: 1,
+        projection: 'globe',
+    });
 
-    // Add some sample circles representing countries
-    const countries = [
-        { name: 'USA', x: 200, y: 150, regime: 'democratic' },
-        { name: 'China', x: 600, y: 180, regime: 'authoritarian' },
-        { name: 'Russia', x: 500, y: 120, regime: 'authoritarian' },
-        { name: 'Germany', x: 400, y: 140, regime: 'democratic' },
-        { name: 'Brazil', x: 280, y: 250, regime: 'democratic' },
-        { name: 'India', x: 580, y: 200, regime: 'democratic' },
-        { name: 'Saudi Arabia', x: 480, y: 220, regime: 'monarchy' },
-        { name: 'Turkey', x: 450, y: 160, regime: 'hybrid' }
-    ];
+    map.addControl(new maplibregl.FullscreenControl(), 'bottom-left');
+    map.addControl(new maplibregl.NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: true
+    }), 'bottom-left');
 
-    const colorMap = {
-        'democratic': '#47E18D',
-        'authoritarian': '#FF3860',
-        'hybrid': '#E39B6B',
-        'monarchy': '#ba68c8'
+    map.addControl(new maplibregl.ScaleControl({
+        maxWidth: 100,
+        unit: 'metric'
+    }), 'bottom-right');
+
+    let selectedCountry = null;
+
+    map.on('load', () => {
+        map.addSource('countries', {
+            type: 'geojson',
+            data: '/democracy-game/assets/data/WorldBaseMap/Countries_Info.geojson',
+            promoteId: 'NAME' // Use country name as feature ID for hover effects
+        });
+
+        map.addLayer({
+            id: 'regimes-layer',
+            type: 'fill',
+            source: 'countries',
+            paint: {
+                'fill-color': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    // Hover state colors (brighter)
+                    [
+                        'match',
+                        ['get', 'Political_'],
+                        'Democracy', '#5FE5A3',
+                        'Authoritarian', '#FF5580',
+                        'Hybrid', '#EBA885',
+                        'Monarchy', '#C785D8',
+                        'Other', '#B3B3B3',
+                        '#E0E0E0'
+                    ],
+                    // Normal state colors
+                    [
+                        'match',
+                        ['get', 'Political_'],
+                        'Democracy', '#47E18D',
+                        'Authoritarian', '#FF3860',
+                        'Hybrid', '#E39B6B',
+                        'Monarchy', '#ba68c8',
+                        'Other', '#999999',
+                        '#cccccc'
+                    ]
+                ],
+                'fill-opacity': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    0.9,
+                    ['boolean', ['feature-state', 'selected'], false],
+                    0.8,
+                    0.7
+                ]
+            }
+        });
+
+        // Country borders layer
+        map.addLayer({
+            id: 'country-borders',
+            type: 'line',
+            source: 'countries',
+            paint: {
+                'line-color': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    '#ffffff',
+                    ['boolean', ['feature-state', 'selected'], false],
+                    '#47E18D',
+                    '#333333'
+                ],
+                'line-width': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    3,
+                    ['boolean', ['feature-state', 'selected'], false],
+                    2,
+                    0.5
+                ],
+                'line-opacity': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    1,
+                    0.6
+                ]
+            }
+        });
+
+        map.addLayer({
+            id: 'country-labels',
+            type: 'symbol',
+            source: 'countries',
+            filter: ['>', ['get', 'POP_EST'], 50000000], // Only show labels for countries with >50M population
+            layout: {
+                'text-field': ['get', 'NAME'],
+                'text-font': ['Open Sans Bold'],
+                'text-size': [
+                    'interpolate',
+                    ['linear'],
+                    ['zoom'],
+                    1, 8,
+                    4, 12,
+                    8, 16
+                ],
+                'text-anchor': 'center',
+                'text-offset': [0, 0],
+                'text-optional': true
+            },
+            paint: {
+                'text-color': '#ffffff',
+                'text-halo-color': '#000000',
+                'text-halo-width': 2,
+                'text-opacity': [
+                    'interpolate',
+                    ['linear'],
+                    ['zoom'],
+                    1, 0,
+                    3, 1
+                ]
+            }
+        });
+
+        map.on('mousemove', 'regimes-layer', (e) => {
+            if (e.features.length > 0) {
+                map.getCanvas().style.cursor = 'pointer';
+            }
+        });
+
+        map.on('mouseleave', 'regimes-layer', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        map.on('click', 'regimes-layer', (e) => {
+            if (e.features.length > 0) {
+                const country = e.features[0].properties;
+                
+                if (selectedCountry !== null) {
+                    map.setFeatureState(
+                        { source: 'countries', id: selectedCountry },
+                        { selected: false }
+                    );
+                }
+
+                selectedCountry = country.NAME;
+                map.setFeatureState(
+                    { source: 'countries', id: selectedCountry },
+                    { selected: true }
+                );
+
+                // Show detailed country information
+                showCountryDetails(country);
+                
+                // Trigger country selection event for other components
+                if (window.onCountrySelect) {
+                    window.onCountrySelect(country);
+                }
+            }
+        });
+    });
+
+    function formatNumber(num) {
+        if (!num) return 'N/A';
+        if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+        if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+        if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+        return num.toString();
+    }
+
+    function showCountryDetails(country) {
+        const detailsPanel = document.getElementById('country-details') || createDetailsPanel();
+        detailsPanel.innerHTML = `
+            <div class="details-header">
+                <button onclick="closeDetails()" class="close-btn">×</button>
+            </div>
+            <div class="details-content">
+                <div class="detail-item">
+                    <label>Political System:</label>
+                    <span class="regime-tag ${country.Political_?.toLowerCase()}">${country.Political_}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Population:</label>
+                    <span>${formatNumber(country.POP_EST)}</span>
+                </div>
+                <div class="detail-item">
+                    <label>GDP:</label>
+                    <span>$${formatNumber(country.GDP_MD)}M</span>
+                </div>
+                <div class="detail-item">
+                    <label>GDP per Capita:</label>
+                    <span>$${formatNumber((country.GDP_MD * 1000000) / country.POP_EST)}</span>
+                </div>
+            </div>
+        `;
+        detailsPanel.classList.add('active');
+    }
+
+    function createDetailsPanel() {
+        const panel = document.createElement('div');
+        panel.id = 'country-details';
+        panel.className = 'country-details-panel';
+        document.body.appendChild(panel);
+        return panel;
+    }
+
+    window.closeDetails = function() {
+        const panel = document.getElementById('country-details');
+        if (panel) panel.classList.remove('active');
     };
 
-    svg.selectAll('.country-dot')
-        .data(countries)
-        .enter()
-        .append('circle')
-        .attr('class', 'country-dot')
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .attr('r', 0)
-        .attr('fill', d => colorMap[d.regime])
-        .style('cursor', 'pointer')
-        .on('mouseenter', function(event, d) {
-            d3.select(this).transition().duration(200).attr('r', 12);
-            showTooltip(event, `${d.name} - ${d.regime}`);
-        })
-        .on('mouseleave', function(event, d) {
-            d3.select(this).transition().duration(200).attr('r', 8);
-            hideTooltip();
-        })
-        .transition()
-        .duration(1000)
-        .delay((d, i) => i * 200)
-        .attr('r', 8);
+    return map;
 }
 
 function animateProgressBars() {

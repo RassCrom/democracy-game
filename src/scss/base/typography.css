@@ -63,8 +63,8 @@ li {
 }
 
 blockquote {
-  max-width: 46rem !important;
-  margin: 2rem auto !important;
+  max-width: 35rem !important;
+  margin: 1rem auto !important;
   padding: 2rem 0 !important;
   position: relative;
   display: flex;

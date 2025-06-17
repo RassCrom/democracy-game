@@ -9,9 +9,16 @@ export const gameModes = [
   {
     name: "Figure Mode",
     route: "/gamemodethree",
-    icon: "🎯",
+    icon: "🧑",
     color: "var(--orange-color)",
     info: "Given political system find every country within a certain period of time"
+  },
+  {
+    name: "Drag n Drop",
+    route: "/dragthecountry",
+    icon: "🔶",
+    color: "var(--orange-color)",
+    info: "Drag the country shape to its correct political system"
   },
 ];
 
