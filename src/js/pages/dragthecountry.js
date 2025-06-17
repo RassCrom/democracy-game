@@ -5,7 +5,7 @@ document.title = "💕 Drag the Country";
 const gameSettingsString = localStorage.getItem('gameSettings');
 const gameSettings = JSON.parse(gameSettingsString);
 
-let CONTINENT = gameSettings['Continent'] ;
+let CONTINENT = gameSettings['Continent'] || 'all';
 console.log(gameSettings['Continent'])
 
 class DragTheCountryGame {

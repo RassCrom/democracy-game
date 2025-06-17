@@ -1,6 +1,161 @@
-import maplibregl from 'maplibre-gl'
+import maplibregl from 'maplibre-gl';
 
 document.title = '🗳️ Political Regime';
+
+class GameNotification {
+    constructor() {
+        this.container = null;
+        this.overlay = null;
+        this.currentNotification = null;
+        this.init();
+    }
+
+    init() {
+        this.overlay = document.createElement('div');
+        this.overlay.className = 'notification-overlay';
+        document.body.appendChild(this.overlay);
+
+        this.container = document.createElement('div');
+        this.container.className = 'notification-container';
+        document.body.appendChild(this.container);
+    }
+
+    show(options) {
+        if (this.currentNotification) {
+            this.hide();
+        }
+
+        const {
+            type = 'success',
+            title = '',
+            message = '',
+            stats = null,
+            duration = null,
+            onClose = null
+        } = options;
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+
+        const icons = {
+            success: '🎉',
+            warning: '⏰',
+            error: '❌'
+        };
+
+        let html = `
+            <div class="notification-icon">${icons[type]}</div>
+            <div class="notification-title">${title}</div>
+            <div class="notification-message">${message}</div>
+        `;
+
+        if (stats) {
+            html += '<div class="notification-stats">';
+            stats.forEach(stat => {
+                html += `
+                    <div class="stat-item">
+                        <span class="stat-value">${stat.value}</span>
+                        <span class="stat-label">${stat.label}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+        }
+
+        html += '<button class="notification-button" onclick="gameNotification.hide()">Continue</button>';
+
+        notification.innerHTML = html;
+        this.container.appendChild(notification);
+        this.currentNotification = notification;
+
+        this.overlay.classList.add('show');
+        notification.classList.add('show');
+
+        if (duration) {
+            setTimeout(() => this.hide(), duration);
+        }
+
+        this.onCloseCallback = onClose;
+    }
+
+    hide() {
+        if (!this.currentNotification) return;
+
+        this.overlay.classList.remove('show');
+        this.overlay.classList.add('hide');
+        this.currentNotification.classList.remove('show');
+        this.currentNotification.classList.add('hide');
+
+        setTimeout(() => {
+            if (this.currentNotification) {
+                this.container.removeChild(this.currentNotification);
+                this.currentNotification = null;
+            }
+            this.overlay.classList.remove('hide');
+            
+            if (this.onCloseCallback) {
+                this.onCloseCallback();
+                this.onCloseCallback = null;
+            }
+        }, 400);
+    }
+
+    formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+}
+
+window.gameNotification = new GameNotification();
+
+function setTime() {
+    switch (timerLocal) {
+        case '30 seconds':
+            timeLeft = 30;
+            break;
+        case '1 minute':
+            timeLeft = 60;
+            break;
+        case '2 minutes':
+            timeLeft = 120;
+            break;
+        case '3 minutes':
+            timeLeft = 180;
+            break;
+        case '4 minutes':
+            timeLeft = 240;
+            break;
+        case '5 minutes':
+            timeLeft = 300;
+            break;
+        default:
+            timeLeft = 120;
+    }
+
+    return timeLeft
+}
+
+const systemNameDisplayElement = document.querySelector('.heading');
+const counterElement = document.querySelector('.top-info-bar .counter');
+const timerElement = document.querySelector('.top-info-bar .timer');
+const startButton = document.getElementById('startButton');
+const endButton = document.getElementById('endButton');
+let timerLocal;
+let timerInterval;
+const gameSettingsString = localStorage.getItem('gameSettings');
+
+if (gameSettingsString === null) {
+    timerLocal = '30 seconds';
+} else {
+    try {
+        const gameSettings = JSON.parse(gameSettingsString);
+        timerLocal = gameSettings['Timer'] || '30 seconds';
+    } catch (e) {
+        console.error("Error parsing gameSettings from localStorage:", e);
+        timerLocal = '30 seconds';
+    }
+}
 
 var map = new maplibregl.Map({
     container: 'map',
@@ -12,19 +167,10 @@ var map = new maplibregl.Map({
     renderWorldCopies: false
 });
 
-
-const container = document.getElementById('map');
-const systemNameDisplayElement = document.querySelector('.system-name');
-const counterElement = document.querySelector('.top-info-bar .counter');
-const timerElement = document.querySelector('.top-info-bar .timer');
-const startButton = document.getElementById('startButton');
-const endButton = document.getElementById('endButton');
-let timerInterval;
-
 let availableGameChallenges = [];
 let currentGameChallenge = null;
 let correctClicks = 0;
-let timeLeft = 120;
+let timeLeft;
 let clickedCountries = new Set();
 let gameActive = false;
 let hoveredCountryId = null;
@@ -32,8 +178,9 @@ let hoveredCountryId = null;
 startButton.disabled = true;
 endButton.disabled = true;
 
+setTime();
 
-fetch('/assets/data/WorldBaseMap/Countries_Info.geojson')
+fetch('/democracy-game/assets/data/wm2.geojson')
     .then(res => res.json())
     .then(data => {
         const politicalDataAggregator = {};
@@ -100,7 +247,7 @@ fetch('/assets/data/WorldBaseMap/Countries_Info.geojson')
                     'fill-color': [
                         'case',
                         ['boolean', ['feature-state', 'incorrect_click'], false], '#FF3860',
-                        ['boolean', ['feature-state', 'clicked'], false], '#37E18D',
+                        ['boolean', ['feature-state', 'clicked'], false], '#47E18D',
                         '#FFEEE2'
                     ],
                     'fill-opacity': [
@@ -219,14 +366,14 @@ fetch('/assets/data/WorldBaseMap/Countries_Info.geojson')
                         }
                     } else {
                         const countryId = countryName;
-                        
+
                         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: true });
 
-                        setTimeout(() => {
-                            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
-                                map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
-                            }
-                        }, 300);
+                        // setTimeout(() => {
+                        //     if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: countryId })) {
+                        //         map.setFeatureState({ source: 'countries', id: countryId }, { incorrect_click: false });
+                        //     }
+                        // }, 300);
                     }
                 }
             });
@@ -245,8 +392,13 @@ function updateCounter() {
 }
 
 function startGame() {
+    setTime();
     if (availableGameChallenges.length === 0) {
-        alert("No game challenges available to start the game.");
+        gameNotification.show({
+            type: 'error',
+            title: 'No Challenges',
+            message: 'No game challenges available to start the game.'
+        });
         return;
     }
     gameActive = true;
@@ -254,23 +406,10 @@ function startGame() {
     endButton.disabled = false;
 
     if (map.getSource('countries')) {
-        clickedCountries.forEach(countryId => {
-            map.setFeatureState(
-                { source: 'countries', id: countryId },
-                { clicked: false, hover: false, incorrect_click: false }
-            );
-        });
-        if (hoveredCountryId !== null) {
-            if (map.getSource('countries') && map.getFeatureState({ source: 'countries', id: hoveredCountryId })) {
-                map.setFeatureState(
-                    { source: 'countries', id: hoveredCountryId },
-                    { hover: false, clicked: false, incorrect_click: false }
-                );
-            }
-            hoveredCountryId = null;
-        }
+        map.removeFeatureState({ source: 'countries' });
     }
     clickedCountries.clear();
+    hoveredCountryId = null;
 
     const randomIndex = Math.floor(Math.random() * availableGameChallenges.length);
     currentGameChallenge = availableGameChallenges[randomIndex];
@@ -280,7 +419,6 @@ function startGame() {
     systemNameDisplayElement.textContent = `${currentGameChallenge.systemValue.toUpperCase()}`;
     updateCounter();
 
-    timeLeft = 120;
     updateTimerDisplay();
 
     timerInterval = setInterval(() => {
@@ -298,17 +436,44 @@ function endGame(allFound = false) {
     startButton.disabled = false;
     endButton.disabled = true;
 
-    let message = "";
     if (allFound) {
-        message = `Congratulations! You found all ${currentGameChallenge.count} ${currentGameChallenge.systemValue} countries!`;
+        gameNotification.show({
+            type: 'success',
+            title: 'Perfect Score!',
+            message: `Congratulations! You found all ${currentGameChallenge.count} ${currentGameChallenge.systemValue.toLowerCase()} countries!`,
+            stats: [
+                { value: `${correctClicks}/${currentGameChallenge.count}`, label: 'Found' },
+                { value: '100%', label: 'Score' },
+                { value: gameNotification.formatTime(timeLeft), label: 'Time Left' }
+            ]
+        });
     } else if (timeLeft <= 0) {
-        message = `Time's up! You found ${correctClicks} out of ${currentGameChallenge.count} ${currentGameChallenge.systemValue} countries.`;
+        const percentage = Math.round((correctClicks / currentGameChallenge.count) * 100);
+        gameNotification.show({
+            type: 'error',
+            title: 'Time\'s Up!',
+            message: `You found ${correctClicks} out of ${currentGameChallenge.count} ${currentGameChallenge.systemValue.toLowerCase()} countries`,
+            stats: [
+                { value: `${correctClicks}/${currentGameChallenge.count}`, label: 'Found' },
+                { value: `${percentage}%`, label: 'Final Score' },
+                { value: '00:00', label: 'Time Left' }
+            ]
+        });
     } else {
-        message = `Game over. You found ${correctClicks} out of ${currentGameChallenge.count} ${currentGameChallenge.systemValue} countries.`;
+        const percentage = Math.round((correctClicks / currentGameChallenge.count) * 100);
+        gameNotification.show({
+            type: 'warning',
+            title: 'Game Ended',
+            message: `You found ${correctClicks} out of ${currentGameChallenge.count} ${currentGameChallenge.systemValue.toLowerCase()} countries`,
+            stats: [
+                { value: `${correctClicks}/${currentGameChallenge.count}`, label: 'Found' },
+                { value: `${percentage}%`, label: 'Score' },
+                { value: gameNotification.formatTime(timeLeft), label: 'Time Left' }
+            ]
+        });
     }
 
     setTimeout(() => {
-        alert(message);
         systemNameDisplayElement.textContent = "SYSTEM TYPE";
         counterElement.textContent = "00/00";
         timerElement.textContent = "00:00";
@@ -329,5 +494,3 @@ window.addEventListener('resize', function () {
 });
 
 updateTimerDisplay();
-
-

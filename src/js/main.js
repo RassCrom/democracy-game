@@ -27,9 +27,9 @@ if (ALL_LINKS.includes(activeNav)) {
     wrapper.append(header.render());
 }
 
-if (activeNav === GAMEMODES[0]) {
-    wrapper.append(mainContent);
-}
+// if (activeNav === GAMEMODES[0]) {
+//     wrapper.append(mainContent);
+// }
 
 if ((ALL_LINKS.includes(activeNav) || GAMEMODES.includes(activeNav)) && activeNav !== 'home') {
     if (mainElement) wrapper.append(mainElement);
