@@ -4,73 +4,134 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Drag the Country</title>
-		<script type="module" crossorigin src="/democracy-game/assets/dragthecountry-CTps9_bH.js"></script>
-		<link rel="modulepreload" crossorigin href="/democracy-game/assets/header-CHALseqc.js">
-		<link rel="stylesheet" crossorigin href="/democracy-game/assets/header-Cv09qJ4i.css">
-		<link rel="stylesheet" crossorigin href="/democracy-game/assets/dragthecountry-CFDJ-xhT.css">
+		<script type="module" crossorigin src="/democracy-game/assets/dragthecountry-NyXzxLO1.js"></script>
+		<link rel="modulepreload" crossorigin href="/democracy-game/assets/main-CHgTCQ_b.js">
+		<link rel="stylesheet" crossorigin href="/democracy-game/assets/main-2_YkhHqC.css">
+		<link rel="stylesheet" crossorigin href="/democracy-game/assets/dragthecountry-Bql55_89.css">
 	</head>
-	<body class="drag-body">
-		<img
-			src="/democracy-game/assets/images/kazakhstan-shape.png"
-			alt="kazakhstan-shape"
-			class="bg-img"
-		/>
-		<img
-			src="/democracy-game/assets/images/russia-shape.png"
-			alt="russia-shape"
-			class="bg-img"
-		/>
-		<header id="header" class="header"></header>
-		<div class="drag-header">
-			<div
-				class="drag-header__subtitle drag-header__element"
-				id="attempts-counter"
-			>
-				Attempts: 10
-			</div>
-			<div class="drag-header__title drag-header__element">
-				Drag the Country to Its Government
-			</div>
-			<div class="drag-header__subtitle drag-header__element" id="timer">
-				00:00
+	<body class="">
+		<button class="btn btn-help" id="help-btn">❓</button>
+		
+		<div class="game-container">
+			<header class="game-header">
+				<div class="game-stats">
+					<div class="stat-item">
+						<div class="stat-icon attempts-icon"></div>
+						<span id="attempts-counter">Attempts: 10</span>
+					</div>
+				</div>
+				
+				<h1 class="game-title">Drag the Country to Its Government</h1>
+				
+				<div class="game-stats">
+					<div class="stat-item">
+						<div class="stat-icon timer-icon"></div>
+						<span id="timer">00:00</span>
+					</div>
+				</div>
+			</header>
+
+			<main class="game-content">
+				<section class="countries-panel">
+					<h2 class="panel-title">🌍 Countries</h2>
+					<div class="countries-grid" id="countries"></div>
+				</section>
+
+				<section class="governments-panel">
+					<div class="government-block" data-gov="Democracy">
+						<div class="government-title">
+							🏛️ Democracy
+							<span class="guessed-counter" id="guessed-Democracy">0</span>
+						</div>
+						<div class="government-content"></div>
+					</div>
+					
+					<div class="government-block" data-gov="Authoritarian">
+						<div class="government-title">
+							⚡ Authoritarian
+							<span class="guessed-counter" id="guessed-Authoritarian">0</span>
+						</div>
+						<div class="government-content"></div>
+					</div>
+					
+					<div class="government-block" data-gov="Monarchy">
+						<div class="government-title">
+							👑 Monarchy
+							<span class="guessed-counter" id="guessed-Monarchy">0</span>
+						</div>
+						<div class="government-content"></div>
+					</div>
+					
+					<div class="government-block" data-gov="Totalitarian">
+						<div class="government-title">
+							🔒 Totalitarian
+							<span class="guessed-counter" id="guessed-Totalitarian">0</span>
+						</div>
+						<div class="government-content"></div>
+					</div>
+				</section>
+			</main>
+
+			<footer class="game-controls">
+				<button class="btn btn-check" id="check-btn">✓ Check Answers</button>
+				<button class="btn btn-restart" id="restart-btn">🔄 Restart Game</button>
+			</footer>
+		</div>
+
+		<!-- Tutorial Modal -->
+		<div class="tutorial-modal" id="tutorial-modal">
+			<div class="tutorial-content">
+				<button class="close-tutorial" id="close-tutorial">×</button>
+				<h2 class="tutorial-title">How to Play Democracy Game</h2>
+				
+				<ul class="tutorial-steps">
+					<li class="tutorial-step">
+						<div class="step-number">1</div>
+						<div class="step-text">
+							<strong>Drag countries</strong> from the left panel to the correct government type on the right.
+						</div>
+					</li>
+					
+					<li class="tutorial-step">
+						<div class="step-number">2</div>
+						<div class="step-text">
+							<strong>Government types:</strong> Democracy (free elections), Authoritarian (limited freedoms), Monarchy (royal rule), Totalitarian (total control).
+						</div>
+					</li>
+					
+					<li class="tutorial-step">
+						<div class="step-number">3</div>
+						<div class="step-text">
+							<strong>Click "Check Answers"</strong> to see which countries you placed correctly. Green borders = correct, red borders = incorrect.
+						</div>
+					</li>
+					
+					<li class="tutorial-step">
+						<div class="step-number">4</div>
+						<div class="step-text">
+							<strong>You have 10 attempts</strong> to get all countries correct. The timer tracks your progress.
+						</div>
+					</li>
+					
+					<li class="tutorial-step">
+						<div class="step-number">5</div>
+						<div class="step-text">
+							<strong>Move countries back</strong> to the left panel to change your answers before checking.
+						</div>
+					</li>
+				</ul>
+				
+				<div style="text-align: center;">
+					<button class="btn btn-check" id="start-game">🎮 Start Playing!</button>
+				</div>
 			</div>
 		</div>
-		<main class="drag-main">
-			<div class="drag-main__countries" id="countries"></div>
-			<div class="drag-main__governments square-layout">
-				<div class="government-block" data-gov="Democracy">
-					<div class="government-title">
-						Democracy
-						<span class="guessed-counter" id="guessed-Democracy">0</span>
-					</div>
-					<div class="government-content"></div>
-				</div>
-				<div class="government-block" data-gov="Authoritarian">
-					<div class="government-title">
-						Authoritarian
-						<span class="guessed-counter" id="guessed-Authoritarian">0</span>
-					</div>
-					<div class="government-content"></div>
-				</div>
-				<div class="government-block" data-gov="Monarchy">
-					<div class="government-title">
-						Monarchy
-						<span class="guessed-counter" id="guessed-Monarchy">0</span>
-					</div>
-					<div class="government-content"></div>
-				</div>
-				<div class="government-block" data-gov="Totalitarian">
-					<div class="government-title">
-						Totalitarian
-						<span class="guessed-counter" id="guessed-Totalitarian">0</span>
-					</div>
-					<div class="government-content"></div>
-				</div>
-			</div>
-		</main>
-		<div class="drag-footer">
-			<button class="btn" id="check-btn">Check</button>
-			<button class="btn" id="restart-btn">Restart</button>
+
+		<!-- Status Message -->
+		<div class="status-message" id="status-message">
+			<h3 id="status-title"></h3>
+			<p id="status-text"></p>
 		</div>
+
 	</body>
 </html>
