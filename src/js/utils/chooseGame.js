@@ -10,7 +10,7 @@ export const gameModes = [
     name: "Figure Mode",
     route: "/gamemodethree",
     icon: "🧑",
-    color: "var(--orange-color)",
+    color: "var(--red-color)",
     info: "Given political system find every country within a certain period of time"
   },
   {
@@ -19,6 +19,13 @@ export const gameModes = [
     icon: "🔶",
     color: "var(--orange-color)",
     info: "Drag the country shape to its correct political system"
+  },
+  {
+    name: "Maple",
+    route: "/gamemodefour",
+    icon: "🗺️",
+    color: "var(--purple-color)",
+    info: "Guess the country by facts"
   },
 ];
 

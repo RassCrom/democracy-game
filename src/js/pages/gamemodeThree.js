@@ -353,7 +353,7 @@ function initMap() {
 
 async function loadCountryData() {
     try {
-        const response = await fetch('/democracy-game/assets/data/wm2.geojson');
+        const response = await fetch('/democracy-game/assets/data/wm4.geojson');
         if (!response.ok) {
             throw new Error(`Failed to load GeoJSON: ${response.statusText}`);
         }
@@ -377,7 +377,7 @@ async function loadCountryData() {
                     '#47E18D', // Green for correct
                     ['==', ['get', 'answer_status'], 'incorrect'],
                     '#ff4757', // Red for incorrect
-                    '#E39B6B'  // Default blue
+                    '#E39B6B'
                 ],
                 'fill-opacity': .8
             }

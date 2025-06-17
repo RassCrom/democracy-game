@@ -14,7 +14,6 @@ const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
 
 const mainElement = document.querySelector('main');
-const mainContent = document.querySelector('.main-content');
 
 const header = new Header();
 const footer = new Footer();
@@ -27,17 +26,13 @@ if (ALL_LINKS.includes(activeNav)) {
     wrapper.append(header.render());
 }
 
-// if (activeNav === GAMEMODES[0]) {
-//     wrapper.append(mainContent);
-// }
-
 if ((ALL_LINKS.includes(activeNav) || GAMEMODES.includes(activeNav)) && activeNav !== 'home') {
     if (mainElement) wrapper.append(mainElement);
     wrapper.append(footer.render());
 }
 
-if (activeNav === 'dragthecountry') {
-    console.log(activeNav);
+if (activeNav === 'dragthecountry' || activeNav === 'gamemodefour') {
+    // console.log(activeNav);
     document.body.append(footer.render());
 }
 
@@ -47,7 +42,7 @@ ALL_LINKS.forEach(link => {
 
     if (activeNav === link && activeNav !== 'home') {
         navLink.classList.add('active-nav');
-        console.log(link);
+        // console.log(link);
     } else {
         navLink.classList.remove('active-nav');
     }

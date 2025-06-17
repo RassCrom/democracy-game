@@ -155,6 +155,13 @@ class Header {
             a.href = `/democracy-game/src/pages/${linkText}.html`;
             a.textContent = linkText;
             mobileMenu.appendChild(a);
+            if (!(linkText !== 'educational' && linkText !== 'tutorial')) {
+                a.addEventListener('click', function(event) {
+                    event.preventDefault();
+                });
+                a.style.opacity = '0.5';
+                a.style.cursor = 'not-allowed';
+            }
         });
 
         return mobileMenu;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../scss/main.css">
+    <link rel="stylesheet" href="../scss/pages/gamemodefour.css" />
+</head>
+<body>
+    <header class="game-header">
+        <h1 class="game-title"><span>🌍</span> Geography Facts Game</h1>
+        <div class="game-controls">
+            <div class="timer" id="timer">60</div>
+            <button class="btn btn-secondary" id="helpBtn">❓ Help</button>
+            <button class="btn btn-primary" id="startBtn">🎮 Start Game</button>
+            <button class="btn btn-secondary" id="restartBtn" style="display: none;">🔄 Restart</button>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div class="facts-panel">
+            <div id="gameStartMessage" class="fact-item revealed">
+                <div class="fact-number">Welcome</div>
+                <div class="fact-text">Click "Start Game" to begin your geography challenge!</div>
+            </div>
+            <div id="factsContainer" style="display: none;"></div>
+            <div class="guess-input" id="guessSection" style="display: none;">
+                <input type="text" class="guess-field" id="guessInput" placeholder="Enter country name..." />
+                <button class="btn btn-primary" id="guessBtn">Guess</button>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <h2 class="modal-title">🎯 How to Play</h2>
+            <div class="modal-text">
+                <p><strong>Welcome to Geography Facts!</strong></p>
+                <br>
+                <p>🔍 <strong>Objective:</strong> Guess the mystery country based on the facts revealed!</p>
+                <br>
+                <p>📋 <strong>Game Rules:</strong></p>
+                <p>• You'll receive up to 6 clues about a country</p>
+                <p>• Facts appear one by one - each wrong guess reveals a new fact</p>
+                <p>• The 6th and final clue shows the country's shape</p>
+                <p>• You have 60 seconds to make your guess</p>
+                <br>
+                <p>🎯 <strong>Scoring:</strong></p>
+                <p>• Guess correctly on 1st fact: 100 points</p>
+                <p>• Guess correctly on 2nd fact: 80 points</p>
+                <p>• And so on... (minimum 10 points)</p>
+                <br>
+                <p>💡 <strong>Tip:</strong> Facts include population, capital, language, political system, and more!</p>
+            </div>
+            <button class="btn btn-primary" id="closeHelpBtn">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div class="modal" id="gameOverModal">
+        <div class="modal-content">
+            <h2 class="modal-title" id="gameOverTitle">🎮 Game Over</h2>
+            <div class="modal-text" id="gameOverText"></div>
+            <div class="score-display" id="scoreDisplay"></div>
+            <button class="btn btn-primary" id="playAgainBtn">🎯 Play Again</button>
+        </div>
+    </div>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/gamemodeFour.js"></script>
+</body>
+</html>

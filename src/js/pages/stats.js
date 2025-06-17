@@ -495,7 +495,7 @@ function initializeMap() {
     map.on('load', () => {
         map.addSource('countries', {
             type: 'geojson',
-            data: '/democracy-game/assets/data/WorldBaseMap/Countries_Info.geojson',
+            data: '/democracy-game/assets/data/wm4.geojson',
             promoteId: 'NAME' // Use country name as feature ID for hover effects
         });
 
@@ -536,7 +536,7 @@ function initializeMap() {
                     0.9,
                     ['boolean', ['feature-state', 'selected'], false],
                     0.8,
-                    0.7
+                    0.75
                 ]
             }
         });
@@ -674,6 +674,14 @@ function initializeMap() {
                 <div class="detail-item">
                     <label>GDP per Capita:</label>
                     <span>$${formatNumber((country.GDP_MD * 1000000) / country.POP_EST)}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Capital City:</label>
+                    <span>${country.city || 'No info'}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Capital City's Population:</label>
+                    <span>${formatNumber(country.population) || 'No info'}</span>
                 </div>
             </div>
         `;

@@ -2,11 +2,15 @@ import Header from '../components/header.js'
 
 document.title = "💕 Drag the Country";
 
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 const gameSettingsString = localStorage.getItem('gameSettings');
 const gameSettings = JSON.parse(gameSettingsString);
 
 let CONTINENT = gameSettings['Continent'] || 'all';
-console.log(gameSettings['Continent'])
+// console.log(gameSettings['Continent'])
 
 class DragTheCountryGame {
     constructor() {
@@ -401,12 +405,18 @@ class DragTheCountryGame {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const headerContainer = document.getElementById('header')
-    if (headerContainer) {
-        const header = new Header()
-        headerContainer.replaceWith(header.render())
-    }
-    
-    new DragTheCountryGame()
-})
+
+
+if (isMobile()) {
+    alert('Sorry, it is inconvenient to play this mode from phone, consider other options or switch on to the desktop')
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        const headerContainer = document.getElementById('header')
+        if (headerContainer) {
+            const header = new Header()
+            headerContainer.replaceWith(header.render())
+        }
+        
+        new DragTheCountryGame()
+    })
+}

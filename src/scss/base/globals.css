@@ -124,15 +124,36 @@ main {
     justify-content: space-between;
 }
 
+.about,
+.settings,
+.stats,
+.countrybase {
+  margin-top: 2rem;
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 1100px) {
     html, body {
         font-size: 14px;
     }
+
+  .about,
+  .settings,
+  .stats,
+  .countrybase {
+    margin-top: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 860px) {
     html, body {
         font-size: 12px;
     }
+
+  .about,
+  .settings,
+  .stats,
+  .countrybase {
+    margin-top: 1rem;
+  }
 }
